@@ -31,7 +31,7 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/appEstate" )
-@Tag(description = "appEstate" , name = "建筑管理管理" )
+@Tag(description = "appEstate" , name = "建筑管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
 @CrossOrigin(origins = "*")
 public class AppEstateController {

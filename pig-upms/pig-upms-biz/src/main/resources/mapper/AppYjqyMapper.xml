@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pig4cloud.pig.admin.mapper.AppYjqyMapper">
+
+  <resultMap id="appYjqyMap" type="com.pig4cloud.pig.admin.api.entity.AppYjqyEntity">
+        <id property="yjqyId" column="yjqy_id"/>
+        <id property="yjqyName" column="yjqy_name"/>
+        <id property="createBy" column="create_by"/>
+        <id property="createTime" column="create_time"/>
+        <id property="updateBy" column="update_by"/>
+        <id property="updateTime" column="update_time"/>
+  </resultMap>
+</mapper>

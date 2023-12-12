@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pig4cloud.pig.admin.mapper.AppEstatetypeMapper">
+
+  <resultMap id="appEstatetypeMap" type="com.pig4cloud.pig.admin.api.entity.AppEstatetypeEntity">
+        <id property="estatetypeId" column="estatetype_id"/>
+        <id property="estatetypeName" column="estatetype_name"/>
+        <id property="createBy" column="create_by"/>
+        <id property="createTime" column="create_time"/>
+        <id property="updateBy" column="update_by"/>
+        <id property="updateTime" column="update_time"/>
+  </resultMap>
+</mapper>
