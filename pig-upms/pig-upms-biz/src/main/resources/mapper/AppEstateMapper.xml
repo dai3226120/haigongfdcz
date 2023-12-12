@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pig4cloud.pig.admin.mapper.AppEstateMapper">
+
+  <resultMap id="appEstateMap" type="com.pig4cloud.pig.admin.api.entity.AppEstateEntity">
+        <id property="estateId" column="estate_id"/>
+        <id property="estateName" column="estate_name"/>
+        <id property="estateFloor" column="estate_floor"/>
+        <id property="estateCode" column="estate_code"/>
+        <id property="estateDistrictCode" column="estate_district_code"/>
+        <id property="estateAddress" column="estate_address"/>
+        <id property="estateAreaLand" column="estate_area_land"/>
+        <id property="estateAreaLandcertificate" column="estate_area_landcertificate"/>
+        <id property="estateAreaEstate" column="estate_area_estate"/>
+        <id property="estateAreaEstatecertificate" column="estate_area_estatecertificate"/>
+        <id property="yjqyId" column="yjqy_id"/>
+        <id property="qsdwId" column="qsdw_id"/>
+        <id property="estateLandstatusId" column="estate_landstatus_id"/>
+        <id property="estateEstatetypeId" column="estate_estatetype_id"/>
+        <id property="estateEstatefunctionId" column="estate_estatefunction_id"/>
+        <id property="createBy" column="create_by"/>
+        <id property="createTime" column="create_time"/>
+        <id property="updateBy" column="update_by"/>
+        <id property="updateTime" column="update_time"/>
+  </resultMap>
+</mapper>
