@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pig4cloud.pig.admin.mapper.AppContractMapper">
+
+  <resultMap id="appContractMap" type="com.pig4cloud.pig.admin.api.entity.AppContractEntity">
+        <id property="contractId" column="contract_id"/>
+        <id property="suiteId" column="suite_id"/>
+        <id property="contractTenant" column="contract_tenant"/>
+        <id property="contractIsupdatecontract" column="contract_isupdatecontract"/>
+        <id property="contractContractnumber" column="contract_contractnumber"/>
+        <id property="contractBusinessmode" column="contract_businessmode"/>
+        <id property="contractRenttype" column="contract_renttype"/>
+        <id property="contractStartdate" column="contract_startdate"/>
+        <id property="contractEnddate" column="contract_enddate"/>
+        <id property="contractDailyrent" column="contract_dailyrent"/>
+        <id property="contractYearlyrent" column="contract_yearlyrent"/>
+        <id property="contractStatus" column="contract_status"/>
+        <id property="createBy" column="create_by"/>
+        <id property="createTime" column="create_time"/>
+        <id property="updateBy" column="update_by"/>
+        <id property="updateTime" column="update_time"/>
+  </resultMap>
+</mapper>
