@@ -20,4 +20,88 @@
         <id property="updateBy" column="update_by"/>
         <id property="updateTime" column="update_time"/>
   </resultMap>
+
+	<resultMap id="suiteVoMap" type="com.pig4cloud.pig.admin.api.vo.SuiteVO">
+		<id property="estateId" column="estate_id"/>
+		<id property="estateName" column="estate_name"/>
+		<id property="estateFloor" column="estate_floor"/>
+		<id property="estateCode" column="estate_code"/>
+		<id property="districtName" column="district_name"/>
+		<id property="estateAddress" column="estate_address"/>
+		<id property="estateAreaLand" column="estate_area_land"/>
+		<id property="estateAreaLandcertificate" column="estate_area_landcertificate"/>
+		<id property="estateAreaEstate" column="estate_area_estate"/>
+		<id property="estateAreaEstatecertificate" column="estate_area_estatecertificate"/>
+		<id property="yjqyName" column="yjqy_name"/>
+		<id property="qsdwName" column="qsdw_name"/>
+		<id property="landstatusName" column="landstatus_name"/>
+		<id property="estatetypeName" column="estatetype_name"/>
+		<id property="estatefunctionName" column="estatefunction_name"/>
+
+		<id property="suiteId" column="suite_id"/>
+		<id property="suiteEstateId" column="suite_estate_id"/>
+		<id property="suiteFloor" column="suite_floor"/>
+		<id property="suiteCode" column="suite_code"/>
+		<id property="suiteIsselfuse" column="suite_isselfuse"/>
+		<id property="suiteArea" column="suite_area"/>
+		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
+		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
+		<id property="suiteRemark" column="suite_remark"/>
+		<id property="suiteStatus" column="suite_status"/>
+	</resultMap>
+
+
+
+	<select id="getSuiteVosPage" resultMap="suiteVoMap">
+		SELECT
+		appview_estateinfo.estate_id,
+		appview_estateinfo.estate_name,
+		appview_estateinfo.estate_floor,
+		appview_estateinfo.estate_code,
+		appview_estateinfo.district_name,
+		appview_estateinfo.estate_address,
+		appview_estateinfo.estate_area_land,
+		appview_estateinfo.estate_area_landcertificate,
+		appview_estateinfo.estate_area_estate,
+		appview_estateinfo.estate_area_estatecertificate,
+		appview_estateinfo.yjqy_name,
+		appview_estateinfo.qsdw_name,
+		appview_estateinfo.landstatus_name,
+		appview_estateinfo.estatetype_name,
+		appview_estateinfo.estatefunction_name,
+
+		app_suite.suite_id,
+		app_suite.estate_id AS suite_estate_id,
+		app_suite.suite_floor,
+		app_suite.suite_code,
+		app_suite.suite_isselfuse,
+		app_suite.suite_area,
+		app_suite.suite_referdailyrent,
+		app_suite.suite_referyearlyrent,
+		app_suite.suite_remark,
+		app_suite.suite_status
+		FROM app_suite
+		LEFT JOIN appview_estateinfo ON app_suite.estate_id = appview_estateinfo.estate_id
+		<where>
+			appview_estateinfo.estate_id != 0
+			<if test="query.estateName != null and query.estateName != ''">
+				<bind name="estateNameLike" value="'%'+query.estateName+'%'"/>
+				AND appview_estateinfo.estate_name LIKE #{estateNameLike}
+			</if>
+		</where>
+
+		<if test="_databaseId != 'mssql'">
+			ORDER BY appview_estateinfo.estate_id ASC
+		</if>
+	</select>
+
+
+	<!-- 通过建筑ID，查询房屋信息-->
+	<select id="listSuitesByEstateId" resultMap="appSuiteMap">
+		SELECT *
+		FROM app_suite
+		WHERE app_suite.estate_id = #{estateId}
+	</select>
+
 </mapper>

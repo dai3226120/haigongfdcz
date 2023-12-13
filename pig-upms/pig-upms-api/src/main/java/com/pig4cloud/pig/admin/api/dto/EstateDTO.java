@@ -19,61 +19,63 @@
 
 package com.pig4cloud.pig.admin.api.dto;
 
-import com.pig4cloud.pig.admin.api.entity.*;
+import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
+import com.pig4cloud.pig.admin.api.entity.SysUser;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author lengleng
- * @date 2017/11/11
+ * @author dw
+ * @date 2023/12/13
  */
 @Data
-@Schema(description = "建筑信息")
-public class EstateInfo implements Serializable {
+@Schema(description = "建筑传输对象")
+@EqualsAndHashCode(callSuper = true)
+public class EstateDTO extends AppEstateEntity {
 
 	/**
-	 * 建筑基本信息
+	 * 地区编号
 	 */
-	@Schema(description = "建筑基本信息")
-	private AppEstateEntity appEstate;
+	@Schema(description="地区编号")
+	private Long estateDistrictCode;
 
 	/**
-	 * 地区信息
+	 * 一级企业_关联ID
 	 */
-	@Schema(description = "地区信息")
-	private List<AppDistrict> appDistrict;
+	@Schema(description="一级企业_关联ID")
+	private Integer yjqyId;
 
 	/**
-	 * 一级企业信息
+	 * 权属单位_关联ID
 	 */
-	@Schema(description = "一级企业信息")
-	private AppYjqyEntity appYjqy;
+	@Schema(description="权属单位_关联ID")
+	private Integer qsdwId;
 
 	/**
-	 * 权属单位信息
+	 * 土地性质_关联ID
 	 */
-	@Schema(description = "权属单位信息")
-	private AppQsdwEntity appQsdw;
+	@Schema(description="土地性质_关联ID")
+	private Integer estateLandstatusId;
 
 	/**
-	 * 建筑使用性质信息
+	 * 房屋类型_关联ID
 	 */
-	@Schema(description = "建筑使用性质信息")
-	private AppEstatefunctionEntity appEstatefunction;
+	@Schema(description="房屋类型_关联ID")
+	private Integer estateEstatetypeId;
 
 	/**
-	 * 房屋类型信息
+	 * 使用性质_关联ID
 	 */
-	@Schema(description = "房屋类型信息")
-	private AppEstatetypeEntity appEstatetype;
+	@Schema(description="使用性质_关联ID")
+	private Integer estateEstatefunctionId;
 
 	/**
-	 * 土地性质信息
+	 * 所属建筑_关联ID
 	 */
-	@Schema(description = "土地性质信息")
-	private AppLandstatusEntity appLandstatus;
+	@Schema(description="所属建筑_关联ID集合")
+	private List<Integer> estateIds;
 
 }

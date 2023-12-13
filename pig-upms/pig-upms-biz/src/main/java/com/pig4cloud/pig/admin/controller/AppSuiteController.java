@@ -5,6 +5,11 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.pig4cloud.pig.admin.api.dto.EstateDTO;
+import com.pig4cloud.pig.admin.api.dto.SuiteDTO;
+import com.pig4cloud.pig.admin.api.dto.UserDTO;
+import com.pig4cloud.pig.admin.api.vo.EstateSuiteVO;
+import com.pig4cloud.pig.admin.api.vo.SuiteVO;
 import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.admin.api.entity.AppSuiteEntity;
@@ -116,4 +121,19 @@ public class AppSuiteController {
     public List<AppSuiteEntity> export(AppSuiteEntity appSuite,Integer[] ids) {
         return appSuiteService.list(Wrappers.lambdaQuery(appSuite).in(ArrayUtil.isNotEmpty(ids), AppSuiteEntity::getSuiteId, ids));
     }
+
+	/**
+	 * 分页查询建筑-房屋信息
+	 * @param page 参数集
+	 * @param suiteVO 查询参数列表
+	 * @return 建筑信息集合
+	 */
+
+	@Operation(summary = "分页查询建筑-房屋信息" , description = "分页查询建筑-房屋信息" )
+	@GetMapping("/vopage" )
+	@PreAuthorize("@pms.hasPermission('admin_appSuite_view')" )
+	public R getEstateVoPage(@ParameterObject Page page, @ParameterObject SuiteVO suiteVO) {
+		return R.ok(appSuiteService.getSuitesAllPage(page, suiteVO));
+	}
+
 }

@@ -5,15 +5,12 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pig4cloud.pig.admin.api.dto.EstateInfo;
-import com.pig4cloud.pig.admin.api.entity.SysUser;
-import com.pig4cloud.pig.common.core.exception.ErrorCodes;
-import com.pig4cloud.pig.common.core.util.MsgUtils;
+import com.pig4cloud.pig.admin.api.dto.EstateDTO;
+import com.pig4cloud.pig.admin.api.dto.UserDTO;
 import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
 import com.pig4cloud.pig.admin.service.AppEstateService;
-import com.pig4cloud.pig.common.security.util.SecurityUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.pig4cloud.plugin.excel.annotation.ResponseExcel;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -25,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 建筑管理
@@ -123,32 +119,30 @@ public class AppEstateController {
         return appEstateService.list(Wrappers.lambdaQuery(appEstate).in(ArrayUtil.isNotEmpty(ids), AppEstateEntity::getEstateId, ids));
     }
 
+	/**
+	 * 分页查询建筑信息
+	 * @param page 参数集
+	 * @param estateDTO 查询参数列表
+	 * @return 建筑信息集合
+	 */
 
-//	/**
-//	 * 分页查询
-//	 * @param page 分页对象
-//	 * @param appEstate 建筑管理
-//	 * @return
-//	 */
-//	@Operation(summary = "信息查询" , description = "信息查询" )
-//	@GetMapping("/info" )
-//	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
-//	public R getAppEstatePage(@ParameterObject Page page, @ParameterObject EstateInfo estateInfo) {
-//		LambdaQueryWrapper<EstateInfo> wrapper = Wrappers.lambdaQuery();
-//		return R.ok(appEstateService.page(page, wrapper));
-//	}
+	@Operation(summary = "分页查询建筑信息" , description = "分页查询建筑信息" )
+	@GetMapping("/vopage" )
+	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
+	public R getEstateVoPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
+		return R.ok(appEstateService.getEstatesAllPage(page, estateDTO));
+	}
 
-//	/**
-//	 * 获取建筑全部信息
-//	 * @return 建筑全部信息
-//	 */
-//	@GetMapping(value = { "/info" })
-//	public R info() {
-//		String estatename = SecurityUtils.getUser().getUsername();
-//		SysUser user = userService.getOne(Wrappers.<SysUser>query().lambda().eq(SysUser::getUsername, username));
-//		if (user == null) {
-//			return R.failed(MsgUtils.getMessage(ErrorCodes.SYS_USER_QUERY_ERROR));
-//		}
-//		return R.ok(userService.findUserInfo(user));
-//	}
+	/**
+	 * 分页查询建筑-房屋信息
+	 * @param page 参数集
+	 * @param estateDTO 查询参数列表
+	 * @return 用户集合
+	 */
+	@Operation(summary = "分页查询建筑-房屋信息" , description = "分页查询建筑-房屋信息" )
+	@GetMapping("/estatesuitevopage")
+	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
+	public R getUserPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
+		return R.ok(appEstateService.getEstateSuiteAllPage(page, estateDTO));
+	}
 }
