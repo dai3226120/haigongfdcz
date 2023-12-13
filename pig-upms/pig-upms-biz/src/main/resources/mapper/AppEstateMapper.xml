@@ -66,49 +66,57 @@
 
 
 	<select id="getEstateVosPage" resultMap="estateVoMap">
-		SELECT
-		app_estate.estate_id,
-		app_estate.estate_name,
-		app_estate.estate_floor,
-		app_estate.estate_code,
-		app_district.district_name,
-		app_estate.estate_address,
-		app_estate.estate_area_land,
-		app_estate.estate_area_landcertificate,
-		app_estate.estate_area_estate,
-		app_estate.estate_area_estatecertificate,
-		app_yjqy.yjqy_name,
-		app_qsdw.qsdw_name,
-		app_landstatus.landstatus_name,
-		app_estatetype.estatetype_name,
-		app_estatefunction.estatefunction_name
-		FROM app_estate
-		LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
-		LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
-		LEFT JOIN app_qsdw ON app_estate.qsdw_id = app_qsdw.qsdw_id
-		LEFT JOIN app_estatefunction ON app_estate.estate_estatefunction_id = app_estatefunction.estatefunction_id
-		LEFT JOIN app_estatetype ON app_estate.estate_estatetype_id = app_estatetype.estatetype_id
-		LEFT JOIN app_landstatus ON app_estate.estate_landstatus_id = app_landstatus.landstatus_id
+			SELECT
+			app_estate.estate_id,
+			app_estate.estate_name,
+			app_estate.estate_floor,
+			app_estate.estate_code,
+			app_district.district_name,
+			app_estate.estate_address,
+			app_estate.estate_area_land,
+			app_estate.estate_area_landcertificate,
+			app_estate.estate_area_estate,
+			app_estate.estate_area_estatecertificate,
+			app_yjqy.yjqy_name,
+			app_qsdw.qsdw_name,
+			app_landstatus.landstatus_name,
+			app_estatetype.estatetype_name,
+			app_estatefunction.estatefunction_name
+			FROM app_estate
+			LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
+			LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
+			LEFT JOIN app_qsdw ON app_estate.qsdw_id = app_qsdw.qsdw_id
+			LEFT JOIN app_estatefunction ON app_estate.estate_estatefunction_id = app_estatefunction.estatefunction_id
+			LEFT JOIN app_estatetype ON app_estate.estate_estatetype_id = app_estatetype.estatetype_id
+			LEFT JOIN app_landstatus ON app_estate.estate_landstatus_id = app_landstatus.landstatus_id
 		<where>
 			app_estate.estate_id != 0
 			<if test="query.estateName != null and query.estateName != ''">
 				<bind name="estateNameLike" value="'%'+query.estateName+'%'"/>
 				AND app_estate.estate_name LIKE #{estateNameLike}
 			</if>
-			<if test="query.yjqyId != null and query.yjqyId != ''">
-				AND app_estate.yjqy_id = #{query.yjqyId}
+			<if test="query.estateCode != null and query.estateCode != ''">
+				<bind name="estateCodeLike" value="'%'+query.estateCode+'%'"/>
+				AND app_estate.estate_code LIKE #{estateCodeLike}
 			</if>
-			<if test="query.qsdwId != null and query.qsdwId != ''">
-				AND app_estate.qsdw_id = #{query.qsdwId}
+			<if test="query.districtName != null and query.districtName != ''">
+				<bind name="districtNameLike" value="'%'+query.districtName+'%'"/>
+				AND app_district.district_name LIKE #{districtNameLike}
 			</if>
-			<if test="query.estateEstatefunctionId != null and query.estateEstatefunctionId != ''">
-				AND app_estate.estate_estatefunction_id = #{query.estateEstatefunctionId}
+			<if test="query.yjqyName != null and query.yjqyName != ''">
+				AND app_yjqy.yjqy_name = #{query.yjqyName}
 			</if>
-			<if test="query.estateEstatetypeId != null and query.estateEstatetypeId != ''">
-				AND app_estate.estate_estatetype_id = #{query.estateEstatetypeId}
+			<if test="query.qsdwName != null and query.qsdwName != ''">
+				AND app_qsdw.qsdw_name = #{query.qsdwName}
 			</if>
-			<if test="query.estateLandstatusId != null and query.estateLandstatusId != ''">
-				AND app_estate.estate_landstatus_id = #{query.estateLandstatusId}
+			<if test="query.estatefunctionName != null and query.estatefunctionName != ''">
+				AND app_estatefunction.estatefunction_name = #{query.estatefunctionName}
+			</if>
+			<if test="query.estatetypeName != null and query.estatetypeName != ''">
+				AND app_estatetype.estatetype_name = #{query.estatetypeName}
+			</if>
+			<if test="query.landstatusName != null and query.landstatusName != ''">
+				AND app_landstatus.landstatus_name = #{query.landstatusName}
 			</if>
 		</where>
 
@@ -147,20 +155,28 @@
 				<bind name="estateNameLike" value="'%'+query.estateName+'%'"/>
 				AND app_estate.estate_name LIKE #{estateNameLike}
 			</if>
-			<if test="query.yjqyId != null and query.yjqyId != ''">
-				AND app_estate.yjqy_id = #{query.yjqyId}
+			<if test="query.estateCode != null and query.estateCode != ''">
+				<bind name="estateCodeLike" value="'%'+query.estateCode+'%'"/>
+				AND app_estate.estate_code LIKE #{estateCodeLike}
 			</if>
-			<if test="query.qsdwId != null and query.qsdwId != ''">
-				AND app_estate.qsdw_id = #{query.qsdwId}
+			<if test="query.districtName != null and query.districtName != ''">
+				<bind name="districtNameLike" value="'%'+query.districtName+'%'"/>
+				AND app_district.district_name LIKE #{districtNameLike}
 			</if>
-			<if test="query.estateEstatefunctionId != null and query.estateEstatefunctionId != ''">
-				AND app_estate.estate_estatefunction_id = #{query.estateEstatefunctionId}
+			<if test="query.yjqyName != null and query.yjqyName != ''">
+				AND app_yjqy.yjqy_name = #{query.yjqyName}
 			</if>
-			<if test="query.estateEstatetypeId != null and query.estateEstatetypeId != ''">
-				AND app_estate.estate_estatetype_id = #{query.estateEstatetypeId}
+			<if test="query.qsdwName != null and query.qsdwName != ''">
+				AND app_qsdw.qsdw_name = #{query.qsdwName}
 			</if>
-			<if test="query.estateLandstatusId != null and query.estateLandstatusId != ''">
-				AND app_estate.estate_landstatus_id = #{query.estateLandstatusId}
+			<if test="query.estatefunctionName != null and query.estatefunctionName != ''">
+				AND app_estatefunction.estatefunction_name = #{query.estatefunctionName}
+			</if>
+			<if test="query.estatetypeName != null and query.estatetypeName != ''">
+				AND app_estatetype.estatetype_name = #{query.estatetypeName}
+			</if>
+			<if test="query.landstatusName != null and query.landstatusName != ''">
+				AND app_landstatus.landstatus_name = #{query.landstatusName}
 			</if>
 		</where>
 
