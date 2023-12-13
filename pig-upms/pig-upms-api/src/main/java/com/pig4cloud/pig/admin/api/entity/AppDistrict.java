@@ -50,7 +50,6 @@ public class AppDistrict extends Model<AppDistrict> {
 	/**
 	 * 地区名称
 	 */
-	@NotBlank(message = "地区名称不能为空")
 	@Schema(description = "地区名称")
 	private String districtName;
 

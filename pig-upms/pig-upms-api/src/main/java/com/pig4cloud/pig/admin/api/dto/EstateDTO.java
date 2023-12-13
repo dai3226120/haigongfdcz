@@ -22,6 +22,7 @@ package com.pig4cloud.pig.admin.api.dto;
 import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
 import com.pig4cloud.pig.admin.api.entity.SysUser;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -77,5 +78,41 @@ public class EstateDTO extends AppEstateEntity {
 	 */
 	@Schema(description="所属建筑_关联ID集合")
 	private List<Integer> estateIds;
+
+	/**
+	 * 地区名称
+	 */
+	@Schema(description = "地区名称")
+	private String districtName;
+
+	/**
+	 * 一级企业名称
+	 */
+	@Schema(description="一级企业名称")
+	private String yjqyName;
+
+	/**
+	 * 权属单位名称
+	 */
+	@Schema(description="权属单位名称")
+	private String qsdwName;
+
+	/**
+	 * 土地性质名称
+	 */
+	@Schema(description="土地性质名称")
+	private String landstatusName;
+
+	/**
+	 * 房屋类型名称
+	 */
+	@Schema(description="房屋类型名称")
+	private String estatetypeName;
+
+	/**
+	 * 使用性质名称
+	 */
+	@Schema(description="使用性质名称")
+	private String estatefunctionName;
 
 }
