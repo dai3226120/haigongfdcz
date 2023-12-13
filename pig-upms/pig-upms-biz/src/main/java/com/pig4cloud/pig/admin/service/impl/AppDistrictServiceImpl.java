@@ -102,7 +102,7 @@ public class AppDistrictServiceImpl extends ServiceImpl<AppDistrictMapper, AppDi
 	 */
 	@Override
 	public List<AppDistrict> listDescendant(Long districtCode) {
-		// 查询全部部门
+		// 查询全部地区
 		List<AppDistrict> alldistrictList = baseMapper.selectList(Wrappers.emptyWrapper());
 
 		// 递归查询所有子节点

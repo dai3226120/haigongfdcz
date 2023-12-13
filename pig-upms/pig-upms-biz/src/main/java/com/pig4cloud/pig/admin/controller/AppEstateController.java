@@ -5,10 +5,15 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.pig4cloud.pig.admin.api.dto.EstateInfo;
+import com.pig4cloud.pig.admin.api.entity.SysUser;
+import com.pig4cloud.pig.common.core.exception.ErrorCodes;
+import com.pig4cloud.pig.common.core.util.MsgUtils;
 import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
 import com.pig4cloud.pig.admin.service.AppEstateService;
+import com.pig4cloud.pig.common.security.util.SecurityUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.pig4cloud.plugin.excel.annotation.ResponseExcel;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -117,4 +122,33 @@ public class AppEstateController {
     public List<AppEstateEntity> export(AppEstateEntity appEstate,Integer[] ids) {
         return appEstateService.list(Wrappers.lambdaQuery(appEstate).in(ArrayUtil.isNotEmpty(ids), AppEstateEntity::getEstateId, ids));
     }
+
+
+//	/**
+//	 * 分页查询
+//	 * @param page 分页对象
+//	 * @param appEstate 建筑管理
+//	 * @return
+//	 */
+//	@Operation(summary = "信息查询" , description = "信息查询" )
+//	@GetMapping("/info" )
+//	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
+//	public R getAppEstatePage(@ParameterObject Page page, @ParameterObject EstateInfo estateInfo) {
+//		LambdaQueryWrapper<EstateInfo> wrapper = Wrappers.lambdaQuery();
+//		return R.ok(appEstateService.page(page, wrapper));
+//	}
+
+//	/**
+//	 * 获取建筑全部信息
+//	 * @return 建筑全部信息
+//	 */
+//	@GetMapping(value = { "/info" })
+//	public R info() {
+//		String estatename = SecurityUtils.getUser().getUsername();
+//		SysUser user = userService.getOne(Wrappers.<SysUser>query().lambda().eq(SysUser::getUsername, username));
+//		if (user == null) {
+//			return R.failed(MsgUtils.getMessage(ErrorCodes.SYS_USER_QUERY_ERROR));
+//		}
+//		return R.ok(userService.findUserInfo(user));
+//	}
 }

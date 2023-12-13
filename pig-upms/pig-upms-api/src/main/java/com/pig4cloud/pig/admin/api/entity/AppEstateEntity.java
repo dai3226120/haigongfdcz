@@ -49,7 +49,7 @@ public class AppEstateEntity extends Model<AppEstateEntity> {
 	* 地区编号
 	*/
     @Schema(description="地区编号")
-    private String estateDistrictCode;
+    private Long estateDistrictCode;
 
 	/**
 	* 详细地址

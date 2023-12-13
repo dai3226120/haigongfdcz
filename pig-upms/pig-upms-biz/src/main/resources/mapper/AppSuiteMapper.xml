@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pig4cloud.pig.admin.mapper.AppSuiteMapper">
+
+  <resultMap id="appSuiteMap" type="com.pig4cloud.pig.admin.api.entity.AppSuiteEntity">
+        <id property="suiteId" column="suite_id"/>
+        <id property="estateId" column="estate_id"/>
+        <id property="suiteFloor" column="suite_floor"/>
+        <id property="suiteCode" column="suite_code"/>
+        <id property="suiteIsselfuse" column="suite_isselfuse"/>
+        <id property="suiteArea" column="suite_area"/>
+        <id property="suiteSupportingarea" column="suite_supportingarea"/>
+        <id property="suiteReferdailyrent" column="suite_referdailyrent"/>
+        <id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
+        <id property="suiteRemark" column="suite_remark"/>
+        <id property="suiteStatus" column="suite_status"/>
+        <id property="createBy" column="create_by"/>
+        <id property="createTime" column="create_time"/>
+        <id property="updateBy" column="update_by"/>
+        <id property="updateTime" column="update_time"/>
+  </resultMap>
+</mapper>
