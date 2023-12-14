@@ -133,7 +133,6 @@
 			</if>
 		</where>
 
-
 		GROUP BY
 		app_estate.estate_id,
 		app_estate.estate_name,
