@@ -58,7 +58,7 @@ public class AppSuiteController {
 
 
     /**
-     * 通过id查询房屋管理
+     * 通过id查询房屋
      * @param suiteId id
      * @return R
      */
@@ -70,12 +70,12 @@ public class AppSuiteController {
     }
 
     /**
-     * 新增房屋管理
+     * 新增房屋
      * @param appSuite 房屋管理
      * @return R
      */
-    @Operation(summary = "新增房屋管理" , description = "新增房屋管理" )
-    @SysLog("新增房屋管理" )
+    @Operation(summary = "新增房屋" , description = "新增房屋" )
+    @SysLog("新增房屋" )
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_appSuite_add')" )
     public R save(@RequestBody AppSuiteEntity appSuite) {
@@ -83,12 +83,12 @@ public class AppSuiteController {
     }
 
     /**
-     * 修改房屋管理
+     * 修改房屋
      * @param appSuite 房屋管理
      * @return R
      */
-    @Operation(summary = "修改房屋管理" , description = "修改房屋管理" )
-    @SysLog("修改房屋管理" )
+    @Operation(summary = "修改房屋" , description = "修改房屋" )
+    @SysLog("修改房屋" )
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin_appSuite_edit')" )
     public R updateById(@RequestBody AppSuiteEntity appSuite) {
@@ -96,12 +96,12 @@ public class AppSuiteController {
     }
 
     /**
-     * 通过id删除房屋管理
+     * 通过id删除房屋
      * @param ids suiteId列表
      * @return R
      */
-    @Operation(summary = "通过id删除房屋管理" , description = "通过id删除房屋管理" )
-    @SysLog("通过id删除房屋管理" )
+    @Operation(summary = "通过id删除房屋" , description = "通过id删除房屋" )
+    @SysLog("通过id删除房屋" )
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin_appSuite_del')" )
     public R removeById(@RequestBody Integer[] ids) {

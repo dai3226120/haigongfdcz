@@ -55,7 +55,7 @@ public class AppEstateController {
 
 
     /**
-     * 通过id查询建筑管理
+     * 通过id查询建筑
      * @param estateId id
      * @return R
      */
@@ -67,12 +67,12 @@ public class AppEstateController {
     }
 
     /**
-     * 新增建筑管理
+     * 新增建筑
      * @param appEstate 建筑管理
      * @return R
      */
-    @Operation(summary = "新增建筑管理" , description = "新增建筑管理" )
-    @SysLog("新增建筑管理" )
+    @Operation(summary = "新增建筑" , description = "新增建筑" )
+    @SysLog("新增建筑" )
     @PostMapping
     @PreAuthorize("@pms.hasPermission('pig_appEstate_add')" )
     public R save(@RequestBody AppEstateEntity appEstate) {
@@ -80,12 +80,12 @@ public class AppEstateController {
     }
 
     /**
-     * 修改建筑管理
+     * 修改建筑
      * @param appEstate 建筑管理
      * @return R
      */
-    @Operation(summary = "修改建筑管理" , description = "修改建筑管理" )
-    @SysLog("修改建筑管理" )
+    @Operation(summary = "修改建筑" , description = "修改建筑" )
+    @SysLog("修改建筑" )
     @PutMapping
     @PreAuthorize("@pms.hasPermission('pig_appEstate_edit')" )
     public R updateById(@RequestBody AppEstateEntity appEstate) {
@@ -93,12 +93,12 @@ public class AppEstateController {
     }
 
     /**
-     * 通过id删除建筑管理
+     * 通过id删除建筑
      * @param ids estateId列表
      * @return R
      */
-    @Operation(summary = "通过id删除建筑管理" , description = "通过id删除建筑管理" )
-    @SysLog("通过id删除建筑管理" )
+    @Operation(summary = "通过id删除建筑" , description = "通过id删除建筑" )
+    @SysLog("通过id删除建筑" )
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('pig_appEstate_del')" )
     public R removeById(@RequestBody Integer[] ids) {

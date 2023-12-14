@@ -65,12 +65,12 @@ public class AppContractController {
     }
 
     /**
-     * 新增合同管理
+     * 新增合同
      * @param appContract 合同管理
      * @return R
      */
-    @Operation(summary = "新增合同管理" , description = "新增合同管理" )
-    @SysLog("新增合同管理" )
+    @Operation(summary = "新增合同" , description = "新增合同" )
+    @SysLog("新增合同" )
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin_appContract_add')" )
     public R save(@RequestBody AppContractEntity appContract) {
@@ -78,12 +78,12 @@ public class AppContractController {
     }
 
     /**
-     * 修改合同管理
+     * 修改合同
      * @param appContract 合同管理
      * @return R
      */
-    @Operation(summary = "修改合同管理" , description = "修改合同管理" )
-    @SysLog("修改合同管理" )
+    @Operation(summary = "修改合同" , description = "修改合同" )
+    @SysLog("修改合同" )
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin_appContract_edit')" )
     public R updateById(@RequestBody AppContractEntity appContract) {
@@ -91,12 +91,12 @@ public class AppContractController {
     }
 
     /**
-     * 通过id删除合同管理
+     * 通过id删除合同
      * @param ids contractId列表
      * @return R
      */
-    @Operation(summary = "通过id删除合同管理" , description = "通过id删除合同管理" )
-    @SysLog("通过id删除合同管理" )
+    @Operation(summary = "通过id删除合同" , description = "通过id删除合同" )
+    @SysLog("通过id删除合同" )
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin_appContract_del')" )
     public R removeById(@RequestBody Integer[] ids) {
