@@ -132,4 +132,28 @@ public class EstateVO implements Serializable {
 	@Schema(description="使用性质名称")
 	private String estatefunctionName;
 
+	/**
+	 * 租赁面积
+	 */
+	@Schema(description="租赁面积")
+	private Double rentArea;
+
+	/**
+	 * 自用面积
+	 */
+	@Schema(description="自用面积")
+	private Double selfuseArea;
+
+	/**
+	 * 空置面积
+	 */
+	@Schema(description="空置面积")
+	private Double vacantArea;
+
+	/**
+	 * 房屋总数
+	 */
+	@Schema(description="房屋总数")
+	private Integer suiteNum;
+
 }
