@@ -5,16 +5,16 @@
 
   <resultMap id="appEstatefileMap" type="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity">
         <id property="estatefileId" column="estatefile_id"/>
-        <id property="estatefileName" column="estatefile_name"/>
-        <id property="bucketName" column="bucket_name"/>
-        <id property="original" column="original"/>
-        <id property="type" column="type"/>
-        <id property="fileSize" column="file_size"/>
-        <id property="estateId" column="estate_id"/>
-        <id property="suiteId" column="suite_id"/>
-        <id property="createBy" column="create_by"/>
-        <id property="createTime" column="create_time"/>
-        <id property="updateBy" column="update_by"/>
-        <id property="updateTime" column="update_time"/>
+        <result property="estatefileName" column="estatefile_name"/>
+        <result property="bucketName" column="bucket_name"/>
+        <result property="original" column="original"/>
+        <result property="type" column="type"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="estateId" column="estate_id"/>
+        <result property="suiteId" column="suite_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
   </resultMap>
 </mapper>
