@@ -23,7 +23,6 @@ public class AppEstatefileEntity extends Model<AppEstatefileEntity> {
 	/**
 	* 资产文件ID
 	*/
-    @TableId(type = IdType.ASSIGN_ID)
     @Schema(description="资产文件ID")
     private Long estatefileId;
 

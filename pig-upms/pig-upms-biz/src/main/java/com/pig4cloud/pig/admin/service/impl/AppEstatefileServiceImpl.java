@@ -66,22 +66,22 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 			resultMap.put("url", String.format("/admin/sys-file/%s/%s", properties.getBucketName(), fileName));
 
 
+			LambdaQueryWrapper<SysFile> wrapper = Wrappers.<SysFile>lambdaQuery();
+			wrapper.eq(SysFile::getFileName, fileName)
+					.select(SysFile::getId)
+					.last("LIMIT 1");
+
+			sysFile = sysFileMapper.selectOne(wrapper);
+
+			resultMap.put("fileId", sysFile != null ? sysFile.getId().toString() : null);
 
 			// 文件管理数据记录,收集管理追踪文件
-			estateFileLog(file, fileName, estateFileDTO);
+			estateFileLog(sysFile.getId(), file, fileName, estateFileDTO);
 		}
 		catch (Exception e) {
 			log.error("上传失败", e);
 			return R.failed(e.getLocalizedMessage());
 		}
-		LambdaQueryWrapper<SysFile> wrapper = Wrappers.<SysFile>lambdaQuery();
-		wrapper.eq(SysFile::getFileName, fileName)
-				.select(SysFile::getId)
-				.last("LIMIT 1");
-
-		sysFile = sysFileMapper.selectOne(wrapper);
-
-		resultMap.put("fileId", sysFile != null ? sysFile.getId().toString() : null);
 
 		return R.ok(resultMap);
 	}
@@ -91,8 +91,9 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 	 * @param file 上传文件格式
 	 * @param fileName 文件名
 	 */
-	private void estateFileLog(MultipartFile file, String fileName, EstateFileDTO estateFileDTO) {
+	private void estateFileLog(Long id, MultipartFile file, String fileName, EstateFileDTO estateFileDTO) {
 		AppEstatefileEntity estatefile = new AppEstatefileEntity();
+		estatefile.setEstatefileId(id);
 		estatefile.setEstatefileName(fileName);
 		estatefile.setOriginal(file.getOriginalFilename());
 		estatefile.setFileSize(file.getSize());
