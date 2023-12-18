@@ -22,5 +22,13 @@ public interface AppSuiteService extends IService<AppSuiteEntity> {
 	 */
 	IPage getSuitesAllPage(Page page, SuiteVO suiteVO);
 
+	/**
+	 * 分页查询房屋-合同信息（含有所有信息）
+	 * @param page 分页对象
+	 * @param suiteEntity 参数列表
+	 * @return
+	 */
+	IPage getSuiteContractAllPage(Page page, AppSuiteEntity suiteEntity);
+
 
 }

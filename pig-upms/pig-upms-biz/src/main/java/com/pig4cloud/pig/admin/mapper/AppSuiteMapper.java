@@ -38,4 +38,12 @@ public interface AppSuiteMapper extends BaseMapper<AppSuiteEntity> {
 	List<AppSuiteMapper> listSuitesByEstateId(Integer estateId);
 
 
+	/**
+	 * 分页查询房屋-合同信息（含所有）
+	 * @param page 分页
+	 * @param suiteEntity 查询参数
+	 * @param dataScope
+	 * @return list
+	 */
+	IPage<SuiteVO> getSuiteContractVosPage(Page page, @Param("query") AppSuiteEntity suiteEntity);
 }

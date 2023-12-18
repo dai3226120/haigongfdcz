@@ -137,4 +137,18 @@ public class AppSuiteController {
 		return R.ok(appSuiteService.getSuitesAllPage(page, suiteVO));
 	}
 
+	/**
+	 * 分页查询房屋-合同信息
+	 * @param page 参数集
+	 * @param suiteEntity 查询参数列表
+	 * @return 建筑信息集合
+	 */
+
+	@Operation(summary = "分页查询房屋-合同信息" , description = "分页查询房屋-合同信息" )
+	@GetMapping("/suiteconstractvopage" )
+	@PreAuthorize("@pms.hasPermission('admin_appSuite_view')" )
+	public R getSuiteContractVosPage(@ParameterObject Page page, @ParameterObject AppSuiteEntity suiteEntity) {
+		return R.ok(appSuiteService.getSuiteContractAllPage(page, suiteEntity));
+	}
+
 }

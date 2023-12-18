@@ -51,7 +51,26 @@
 		<id property="suiteStatus" column="suite_status"/>
 	</resultMap>
 
-
+	<resultMap id="appSuiteContractMap" type="com.pig4cloud.pig.admin.api.vo.SuiteContractVo">
+		<id property="suiteId" column="suite_id"/>
+		<id property="estateId" column="estate_id"/>
+		<id property="suiteFloor" column="suite_floor"/>
+		<id property="suiteCode" column="suite_code"/>
+		<id property="suiteIsselfuse" column="suite_isselfuse"/>
+		<id property="suiteArea" column="suite_area"/>
+		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
+		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
+		<id property="suiteRemark" column="suite_remark"/>
+		<id property="suiteStatus" column="suite_status"/>
+		<id property="createBy" column="create_by"/>
+		<id property="createTime" column="create_time"/>
+		<id property="updateBy" column="update_by"/>
+		<id property="updateTime" column="update_time"/>
+		<collection property="contractEntityList" ofType="com.pig4cloud.pig.admin.api.entity.AppContractEntity"
+					select="com.pig4cloud.pig.admin.mapper.AppContractMapper.listContractsBySuiteId" column="suite_id">
+		</collection>
+	</resultMap>
 
 	<select id="getSuiteVosPage" resultMap="suiteVoMap">
 		SELECT
@@ -102,6 +121,12 @@
 		SELECT *
 		FROM app_suite
 		WHERE app_suite.estate_id = #{estateId}
+	</select>
+
+	<!-- 查询房屋-合同信息-->
+	<select id="getSuiteContractVosPage" resultMap="appSuiteContractMap">
+		SELECT *
+		FROM app_suite
 	</select>
 
 </mapper>

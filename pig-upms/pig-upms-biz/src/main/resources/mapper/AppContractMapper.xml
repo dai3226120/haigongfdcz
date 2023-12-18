@@ -21,4 +21,12 @@
         <id property="updateBy" column="update_by"/>
         <id property="updateTime" column="update_time"/>
   </resultMap>
+
+
+	<!-- 通过建筑ID，查询房屋信息-->
+	<select id="listContractsBySuiteId" resultMap="appContractMap">
+		SELECT *
+		FROM app_contract
+		WHERE app_contract.suite_id = #{suiteId}
+	</select>
 </mapper>

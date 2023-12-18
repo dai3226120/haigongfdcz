@@ -42,6 +42,11 @@ public class AppSuiteServiceImpl extends ServiceImpl<AppSuiteMapper, AppSuiteEnt
 		return baseMapper.getSuiteVosPage(page, suiteVO);
 	}
 
+	@Override
+	public IPage getSuiteContractAllPage(Page page, AppSuiteEntity suiteEntity) {
+		return baseMapper.getSuiteContractVosPage(page, suiteEntity);
+	}
+
 
 
 }
