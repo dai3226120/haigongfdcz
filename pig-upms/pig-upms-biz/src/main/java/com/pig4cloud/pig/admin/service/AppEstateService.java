@@ -26,4 +26,13 @@ public interface AppEstateService extends IService<AppEstateEntity> {
 	 */
 	IPage getEstateSuiteAllPage(Page page, EstateDTO estateDTO);
 
+
+	/**
+	 * 分页查询建筑-房屋-合同信息
+	 * @param page 分页对象
+	 * @param estateDTO 参数列表
+	 * @return
+	 */
+	IPage getEstateSuiteContractAllPage(Page page, EstateDTO estateDTO);
+
 }

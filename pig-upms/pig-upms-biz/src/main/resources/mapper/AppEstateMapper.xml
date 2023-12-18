@@ -72,6 +72,30 @@
 		</collection>
 	</resultMap>
 
+	<resultMap id="estateSuiteContractVoMap" type="com.pig4cloud.pig.admin.api.vo.EstateSuiteContractVO">
+		<id property="estateId" column="estate_id"/>
+		<result property="estateName" column="estate_name"/>
+		<result property="estateFloor" column="estate_floor"/>
+		<result property="estateCode" column="estate_code"/>
+		<result property="districtName" column="district_name"/>
+		<result property="estateAddress" column="estate_address"/>
+		<result property="estateAreaLand" column="estate_area_land"/>
+		<result property="estateAreaLandcertificate" column="estate_area_landcertificate"/>
+		<result property="estateAreaEstate" column="estate_area_estate"/>
+		<result property="estateAreaEstatecertificate" column="estate_area_estatecertificate"/>
+		<result property="yjqyName" column="yjqy_name"/>
+		<result property="qsdwName" column="qsdw_name"/>
+		<result property="landstatusName" column="landstatus_name"/>
+		<result property="estatetypeName" column="estatetype_name"/>
+		<result property="estatefunctionName" column="estatefunction_name"/>
+		<result property="rentArea" column="rent_area"/>
+		<result property="selfuseArea" column="selfuse_area"/>
+		<result property="vacantArea" column="vacant_area"/>
+		<result property="suiteNum" column="suite_num"/>
+		<collection property="suiteContractVoList" ofType="com.pig4cloud.pig.admin.api.vo.SuiteContractVo"
+					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuiteConstractsBySuiteId" column="estate_id">
+		</collection>
+	</resultMap>
 
 	<select id="getEstateVosPage" resultMap="estateVoMap">
 		SELECT
@@ -150,7 +174,90 @@
 		app_estatefunction.estatefunction_name
 		ORDER BY app_estate.estate_id ASC
 	</select>
+
+
+
 	<select id="getEstateSuiteVosPage" resultMap="estateSuiteVoMap">
+		SELECT
+		app_estate.estate_id,
+		app_estate.estate_name,
+		app_estate.estate_floor,
+		app_estate.estate_code,
+		MAX(app_district.district_name) AS district_name,
+		app_estate.estate_address,
+		app_estate.estate_area_land,
+		app_estate.estate_area_landcertificate,
+		app_estate.estate_area_estate,
+		app_estate.estate_area_estatecertificate,
+		app_yjqy.yjqy_name,
+		app_qsdw.qsdw_name,
+		app_landstatus.landstatus_name,
+		app_estatetype.estatetype_name,
+		app_estatefunction.estatefunction_name,
+		SUM(CASE WHEN app_suite.suite_isselfuse = 0 THEN app_suite.suite_area ELSE NULL END) AS rent_area,
+		SUM(CASE WHEN app_suite.suite_isselfuse = 1 THEN app_suite.suite_area ELSE NULL END) AS selfuse_area,
+		(app_estate.estate_area_estate - SUM(app_suite.suite_area)) AS vacant_area,
+		COUNT(app_suite.suite_id) AS suite_num
+		FROM app_estate
+		LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
+		LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
+		LEFT JOIN app_qsdw ON app_estate.qsdw_id = app_qsdw.qsdw_id
+		LEFT JOIN app_estatefunction ON app_estate.estate_estatefunction_id = app_estatefunction.estatefunction_id
+		LEFT JOIN app_estatetype ON app_estate.estate_estatetype_id = app_estatetype.estatetype_id
+		LEFT JOIN app_landstatus ON app_estate.estate_landstatus_id = app_landstatus.landstatus_id
+		JOIN app_suite ON app_suite.estate_id = app_estate.estate_id
+		<where>
+			app_estate.estate_id != 0
+			<if test="query.estateName != null and query.estateName != ''">
+				<bind name="estateNameLike" value="'%'+query.estateName+'%'"/>
+				AND app_estate.estate_name LIKE #{estateNameLike}
+			</if>
+			<if test="query.estateCode != null and query.estateCode != ''">
+				<bind name="estateCodeLike" value="'%'+query.estateCode+'%'"/>
+				AND app_estate.estate_code LIKE #{estateCodeLike}
+			</if>
+			<if test="query.districtName != null and query.districtName != ''">
+				<bind name="districtNameLike" value="'%'+query.districtName+'%'"/>
+				AND app_district.district_name LIKE #{districtNameLike}
+			</if>
+			<if test="query.yjqyName != null and query.yjqyName != ''">
+				AND app_yjqy.yjqy_name = #{query.yjqyName}
+			</if>
+			<if test="query.qsdwName != null and query.qsdwName != ''">
+				AND app_qsdw.qsdw_name = #{query.qsdwName}
+			</if>
+			<if test="query.estatefunctionName != null and query.estatefunctionName != ''">
+				AND app_estatefunction.estatefunction_name = #{query.estatefunctionName}
+			</if>
+			<if test="query.estatetypeName != null and query.estatetypeName != ''">
+				AND app_estatetype.estatetype_name = #{query.estatetypeName}
+			</if>
+			<if test="query.landstatusName != null and query.landstatusName != ''">
+				AND app_landstatus.landstatus_name = #{query.landstatusName}
+			</if>
+		</where>
+
+		GROUP BY
+		app_estate.estate_id,
+		app_estate.estate_name,
+		app_estate.estate_floor,
+		app_estate.estate_code,
+		app_estate.estate_address,
+		app_estate.estate_area_land,
+		app_estate.estate_area_landcertificate,
+		app_estate.estate_area_estate,
+		app_estate.estate_area_estatecertificate,
+		app_yjqy.yjqy_name,
+		app_qsdw.qsdw_name,
+		app_landstatus.landstatus_name,
+		app_estatetype.estatetype_name,
+		app_estatefunction.estatefunction_name
+		ORDER BY app_estate.estate_id ASC
+	</select>
+
+
+
+	<select id="getEstateSuiteContractVosPage" resultMap="estateSuiteContractVoMap">
 		SELECT
 		app_estate.estate_id,
 		app_estate.estate_name,

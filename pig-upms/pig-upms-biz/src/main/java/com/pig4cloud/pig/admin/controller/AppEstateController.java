@@ -142,7 +142,20 @@ public class AppEstateController {
 	@Operation(summary = "分页查询建筑-房屋信息" , description = "分页查询建筑-房屋信息" )
 	@GetMapping("/estatesuitevopage")
 	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
-	public R getUserPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
+	public R getEstateSuiteVosPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
 		return R.ok(appEstateService.getEstateSuiteAllPage(page, estateDTO));
+	}
+
+	/**
+	 * 分页查询建筑-房屋-合同信息
+	 * @param page 参数集
+	 * @param estateDTO 查询参数列表
+	 * @return 用户集合
+	 */
+	@Operation(summary = "分页查询建筑-房屋-合同信息" , description = "分页查询建筑-房屋-合同信息" )
+	@GetMapping("/estatesuitecontractvopage")
+	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
+	public R getEstateSuiteContractVosPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
+		return R.ok(appEstateService.getEstateSuiteContractAllPage(page, estateDTO));
 	}
 }

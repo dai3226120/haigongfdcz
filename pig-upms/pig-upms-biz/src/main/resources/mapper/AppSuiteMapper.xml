@@ -129,4 +129,11 @@
 		FROM app_suite
 	</select>
 
+	<!-- 通过房屋ID，查询房屋-合同信息-->
+	<select id="listSuiteConstractsBySuiteId" resultMap="appSuiteContractMap">
+		SELECT *
+		FROM app_suite
+		WHERE app_suite.estate_id = #{estateId}
+	</select>
+
 </mapper>

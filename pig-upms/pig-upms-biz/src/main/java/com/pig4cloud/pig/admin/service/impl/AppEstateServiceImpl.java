@@ -45,4 +45,15 @@ public class AppEstateServiceImpl extends ServiceImpl<AppEstateMapper, AppEstate
 		return baseMapper.getEstateSuiteVosPage(page, estateDTO);
 	}
 
+	/**
+	 * 分页查询建筑-房屋-合同信息
+	 * @param page 分页对象
+	 * @param estateDTO 参数列表
+	 * @return
+	 */
+	@Override
+	public IPage getEstateSuiteContractAllPage(Page page, EstateDTO estateDTO) {
+		return baseMapper.getEstateSuiteContractVosPage(page, estateDTO);
+	}
+
 }
