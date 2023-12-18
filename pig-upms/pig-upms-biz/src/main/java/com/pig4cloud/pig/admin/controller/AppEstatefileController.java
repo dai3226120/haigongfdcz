@@ -35,6 +35,7 @@ import java.util.Objects;
 @RequestMapping("/appEstatefile" )
 @Tag(description = "appEstatefile" , name = "资产文件管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppEstatefileController {
 
     private final  AppEstatefileService appEstatefileService;

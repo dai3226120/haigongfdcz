@@ -33,6 +33,7 @@ import java.util.Objects;
 @RequestMapping("/appQsdw" )
 @Tag(description = "appQsdw" , name = "权属单位管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppQsdwController {
 
     private final  AppQsdwService appQsdwService;

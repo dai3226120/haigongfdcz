@@ -33,6 +33,7 @@ import java.util.Objects;
 @RequestMapping("/appYjqy" )
 @Tag(description = "appYjqy" , name = "一级企业管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppYjqyController {
 
     private final  AppYjqyService appYjqyService;

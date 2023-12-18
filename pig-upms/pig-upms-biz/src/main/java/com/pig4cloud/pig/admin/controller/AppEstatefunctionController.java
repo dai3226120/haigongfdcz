@@ -33,6 +33,7 @@ import java.util.Objects;
 @RequestMapping("/appEstatefunction" )
 @Tag(description = "appEstatefunction" , name = "建筑使用性质管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppEstatefunctionController {
 
     private final  AppEstatefunctionService appEstatefunctionService;

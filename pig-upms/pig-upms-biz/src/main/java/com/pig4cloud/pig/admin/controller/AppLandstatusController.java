@@ -33,6 +33,7 @@ import java.util.Objects;
 @RequestMapping("/appLandstatus" )
 @Tag(description = "appLandstatus" , name = "土地性质管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppLandstatusController {
 
     private final  AppLandstatusService appLandstatusService;

@@ -38,6 +38,7 @@ import java.util.Objects;
 @RequestMapping("/appSuite" )
 @Tag(description = "appSuite" , name = "房屋管理" )
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+@CrossOrigin(origins = "*")
 public class AppSuiteController {
 
     private final  AppSuiteService appSuiteService;
