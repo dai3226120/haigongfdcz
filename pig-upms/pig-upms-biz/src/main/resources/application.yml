@@ -49,6 +49,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+
 # 前端密码登录解密密钥
 gateway:
   encodeKey: thanks,pig4cloud

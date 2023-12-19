@@ -65,6 +65,12 @@ public class EstateSuiteContractVO implements Serializable {
 	private String estateCode;
 
 	/**
+	 * 地区编号
+	 */
+	@Schema(description="地区编号")
+	private Long districtCode;
+
+	/**
 	 * 地区名称
 	 */
 	@Schema(description = "地区名称")
@@ -101,10 +107,22 @@ public class EstateSuiteContractVO implements Serializable {
 	private Double estateAreaEstatecertificate;
 
 	/**
+	 * 一级企业_关联ID
+	 */
+	@Schema(description="一级企业_关联ID")
+	private Integer yjqyId;
+
+	/**
 	 * 一级企业名称
 	 */
 	@Schema(description="一级企业名称")
 	private String yjqyName;
+
+	/**
+	 * 权属单位_关联ID
+	 */
+	@Schema(description="权属单位_关联ID")
+	private Integer qsdwId;
 
 	/**
 	 * 权属单位名称
@@ -113,16 +131,34 @@ public class EstateSuiteContractVO implements Serializable {
 	private String qsdwName;
 
 	/**
+	 * 土地性质_关联ID
+	 */
+	@Schema(description="土地性质_关联ID")
+	private Integer landstatusId;
+
+	/**
 	 * 土地性质名称
 	 */
 	@Schema(description="土地性质名称")
 	private String landstatusName;
 
 	/**
+	 * 房屋类型_关联ID
+	 */
+	@Schema(description="房屋类型_关联ID")
+	private Integer estatetypeId;
+
+	/**
 	 * 房屋类型名称
 	 */
 	@Schema(description="房屋类型名称")
 	private String estatetypeName;
+
+	/**
+	 * 使用性质_关联ID
+	 */
+	@Schema(description="使用性质_关联ID")
+	private Integer estatefunctionId;
 
 	/**
 	 * 使用性质名称

@@ -26,16 +26,22 @@
 		<id property="estateName" column="estate_name"/>
 		<id property="estateFloor" column="estate_floor"/>
 		<id property="estateCode" column="estate_code"/>
+		<id property="districtCode" column="estate_district_code"/>
 		<id property="districtName" column="district_name"/>
 		<id property="estateAddress" column="estate_address"/>
 		<id property="estateAreaLand" column="estate_area_land"/>
 		<id property="estateAreaLandcertificate" column="estate_area_landcertificate"/>
 		<id property="estateAreaEstate" column="estate_area_estate"/>
 		<id property="estateAreaEstatecertificate" column="estate_area_estatecertificate"/>
+		<id property="yjqyId" column="yjqy_id"/>
 		<id property="yjqyName" column="yjqy_name"/>
+		<id property="qsdwId" column="qsdw_id"/>
 		<id property="qsdwName" column="qsdw_name"/>
+		<id property="landstatusId" column="estate_estatefunction_id"/>
 		<id property="landstatusName" column="landstatus_name"/>
+		<id property="estatetypeId" column="estate_estatetype_id"/>
 		<id property="estatetypeName" column="estatetype_name"/>
+		<id property="estatefunctionId" column="estate_landstatus_id"/>
 		<id property="estatefunctionName" column="estatefunction_name"/>
 
 		<id property="suiteId" column="suite_id"/>
@@ -78,16 +84,22 @@
 		appview_estateinfo.estate_name,
 		appview_estateinfo.estate_floor,
 		appview_estateinfo.estate_code,
+		appview_estateinfo.estate_district_code,
 		appview_estateinfo.district_name,
 		appview_estateinfo.estate_address,
 		appview_estateinfo.estate_area_land,
 		appview_estateinfo.estate_area_landcertificate,
 		appview_estateinfo.estate_area_estate,
 		appview_estateinfo.estate_area_estatecertificate,
+		appview_estateinfo.yjqy_id,
 		appview_estateinfo.yjqy_name,
+		appview_estateinfo.qsdw_id,
 		appview_estateinfo.qsdw_name,
+		appview_estateinfo.estate_landstatus_id,
 		appview_estateinfo.landstatus_name,
+		appview_estateinfo.estate_estatetype_id,
 		appview_estateinfo.estatetype_name,
+		appview_estateinfo.estate_estatefunction_id,
 		appview_estateinfo.estatefunction_name,
 
 		app_suite.suite_id,
@@ -104,9 +116,38 @@
 		LEFT JOIN appview_estateinfo ON app_suite.estate_id = appview_estateinfo.estate_id
 		<where>
 			appview_estateinfo.estate_id != 0
+			<if test="query.estateId != null and query.estateId != ''">
+				AND appview_estateinfo.estate_id = #{query.estateId}
+			</if>
 			<if test="query.estateName != null and query.estateName != ''">
 				<bind name="estateNameLike" value="'%'+query.estateName+'%'"/>
 				AND appview_estateinfo.estate_name LIKE #{estateNameLike}
+			</if>
+			<if test="query.districtName != null and query.districtName != ''">
+				<bind name="districtNameLike" value="'%'+query.districtName+'%'"/>
+				AND appview_estateinfo.district_name LIKE #{districtNameLike}
+			</if>
+			<if test="query.yjqyName != null and query.yjqyName != ''">
+				AND appview_estateinfo.yjqy_name = #{query.yjqyName}
+			</if>
+			<if test="query.qsdwName != null and query.qsdwName != ''">
+				AND appview_estateinfo.qsdw_name = #{query.qsdwName}
+			</if>
+			<if test="query.estatefunctionName != null and query.estatefunctionName != ''">
+				AND appview_estateinfo.estatefunction_name = #{query.estatefunctionName}
+			</if>
+			<if test="query.estatetypeName != null and query.estatetypeName != ''">
+				AND appview_estateinfo.estatetype_name = #{query.estatetypeName}
+			</if>
+			<if test="query.landstatusName != null and query.landstatusName != ''">
+				AND appview_estateinfo.landstatus_name = #{query.landstatusName}
+			</if>
+			<if test="query.suiteId != null and query.suiteId != ''">
+				AND app_suite.suite_id = #{query.suiteId}
+			</if>
+			<if test="query.suiteCode != null and query.suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
 			</if>
 		</where>
 
@@ -127,6 +168,20 @@
 	<select id="getSuiteContractVosPage" resultMap="appSuiteContractMap">
 		SELECT *
 		FROM app_suite
+		<where>
+			app_suite.suite_id != 0
+			<if test="query.suiteId != null and query.suiteId != ''">
+				AND app_suite.suite_id = #{query.suiteId}
+			</if>
+			<if test="query.suiteCode != null and query.suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
+			</if>
+		</where>
+
+		<if test="_databaseId != 'mssql'">
+			ORDER BY app_suite.suite_id ASC
+		</if>
 	</select>
 
 	<!-- 通过房屋ID，查询房屋-合同信息-->
