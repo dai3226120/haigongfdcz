@@ -3,6 +3,7 @@ package com.pig4cloud.pig.admin.api.vo;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.pig4cloud.pig.admin.api.entity.AppContractEntity;
+import com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity;
 import com.pig4cloud.pig.admin.api.entity.AppSuiteEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -118,6 +119,18 @@ public class SuiteContractVo extends Model<SuiteContractVo> {
 	@TableField(fill = FieldFill.INSERT_UPDATE)
     @Schema(description="修改时间")
     private LocalDateTime updateTime;
+
+	/**
+	 * 房屋图片列表
+	 */
+	@Schema(description = "房屋图片列表")
+	private List<AppEstatefileEntity> suitefileImageList;
+
+	/**
+	 * 房屋视频列表
+	 */
+	@Schema(description = "房屋视频列表")
+	private List<AppEstatefileEntity> suitefileVideoList;
 
 	/**
 	 * 合同列表

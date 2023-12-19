@@ -17,4 +17,51 @@
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
   </resultMap>
+
+
+	<!-- 通过建筑ID，查询图片信息-->
+	<select id="listImageByEstateId" resultMap="appEstatefileMap">
+		SELECT *
+		FROM app_estatefile
+		WHERE app_estatefile.estate_id = #{estateId}
+			AND (app_estatefile.type = 'png' or app_estatefile.type = 'jpg' or app_estatefile.type = 'jpeg')
+	</select>
+
+	<!-- 通过建筑ID，查询视频信息-->
+	<select id="listVideoByEstateId" resultMap="appEstatefileMap">
+		SELECT *
+		FROM app_estatefile
+		WHERE app_estatefile.estate_id = #{estateId}
+			AND (
+			    	app_estatefile.type = 'mp4'
+			        or app_estatefile.type = 'avi'
+			        or app_estatefile.type = 'wmv'
+			        or app_estatefile.type = 'flv'
+			        or app_estatefile.type = 'rmvb'
+			        or app_estatefile.type = '3gp'
+			    )
+	</select>
+
+	<!-- 通过房屋ID，查询图片信息-->
+	<select id="listImageBySuiteId" resultMap="appEstatefileMap">
+		SELECT *
+		FROM app_estatefile
+		WHERE app_estatefile.suite_id = #{SuiteId}
+			AND (app_estatefile.type = 'png' or app_estatefile.type = 'jpg' or app_estatefile.type = 'jpeg')
+	</select>
+
+	<!-- 通过房屋ID，查询视频信息-->
+	<select id="listVideoBySuiteId" resultMap="appEstatefileMap">
+		SELECT *
+		FROM app_estatefile
+		WHERE app_estatefile.suite_id = #{SuiteId}
+		  AND (
+				app_estatefile.type = 'mp4'
+				or app_estatefile.type = 'avi'
+				or app_estatefile.type = 'wmv'
+				or app_estatefile.type = 'flv'
+				or app_estatefile.type = 'rmvb'
+				or app_estatefile.type = '3gp'
+				)
+	</select>
 </mapper>

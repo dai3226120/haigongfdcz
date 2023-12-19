@@ -21,6 +21,7 @@ package com.pig4cloud.pig.admin.api.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity;
 import com.pig4cloud.pig.admin.api.entity.AppSuiteEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -189,6 +190,18 @@ public class EstateSuiteContractVO implements Serializable {
 	 */
 	@Schema(description="房屋总数")
 	private Integer suiteNum;
+
+	/**
+	 * 建筑图片列表
+	 */
+	@Schema(description = "建筑图片列表")
+	private List<AppEstatefileEntity> estatefileImageList;
+
+	/**
+	 * 建筑视频列表
+	 */
+	@Schema(description = "建筑视频列表")
+	private List<AppEstatefileEntity> estatefileVideoList;
 
 	/**
 	 * 房屋-合同列表
