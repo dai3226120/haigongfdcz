@@ -12,6 +12,7 @@
         <result property="fileSize" column="file_size"/>
         <result property="estateId" column="estate_id"/>
         <result property="suiteId" column="suite_id"/>
+	  	<result property="contractId" column="contract_id"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
         <result property="updateBy" column="update_by"/>

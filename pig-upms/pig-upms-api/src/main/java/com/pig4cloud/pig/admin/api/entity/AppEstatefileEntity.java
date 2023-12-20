@@ -61,13 +61,19 @@ public class AppEstatefileEntity extends Model<AppEstatefileEntity> {
 	* 关联的建筑ID
 	*/
     @Schema(description="关联的建筑ID")
-    private Integer estateId;
+    private Long estateId;
 
 	/**
-	* 关联的房屋ID
-	*/
-    @Schema(description="关联的房屋ID")
-    private Integer suiteId;
+	 * 关联的房屋ID
+	 */
+	@Schema(description="关联的房屋ID")
+	private Long suiteId;
+
+	/**
+	 * 关联的合同ID
+	 */
+	@Schema(description="关联的合同ID")
+	private Long contractId;
 
 	/**
 	* 创建人

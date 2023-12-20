@@ -47,7 +47,7 @@ public class SuiteVO implements Serializable {
 	 */
 	@TableId(type = IdType.ASSIGN_ID)
 	@Schema(description="建筑ID")
-	private Integer estateId;
+	private Long estateId;
 
 	/**
 	 * 建筑名称
@@ -174,13 +174,13 @@ public class SuiteVO implements Serializable {
 	 */
 	@TableId(type = IdType.ASSIGN_ID)
 	@Schema(description="房屋ID")
-	private Integer suiteId;
+	private Long suiteId;
 
 	/**
 	 * 所属建筑_关联ID
 	 */
 	@Schema(description="所属建筑_关联ID")
-	private Integer suiteEstateId;
+	private Long suiteEstateId;
 
 	/**
 	 * 所在楼层

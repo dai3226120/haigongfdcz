@@ -25,13 +25,13 @@ public class AppContractEntity extends Model<AppContractEntity> {
 	*/
     @TableId(type = IdType.ASSIGN_ID)
     @Schema(description="合同ID")
-    private Integer contractId;
+    private Long contractId;
 
 	/**
 	* 所属房屋_关联ID
 	*/
     @Schema(description="所属房屋_关联ID")
-    private Integer suiteId;
+    private Long suiteId;
 
 	/**
 	* 承租人

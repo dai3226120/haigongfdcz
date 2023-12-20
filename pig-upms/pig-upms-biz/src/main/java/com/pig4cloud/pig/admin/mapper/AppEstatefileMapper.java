@@ -15,27 +15,27 @@ public interface AppEstatefileMapper extends BaseMapper<AppEstatefileEntity> {
 	 * @param estateId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listImageByEstateId(Integer estateId);
+	List<AppEstatefileEntity> listImageByEstateId(Long estateId);
 
 	/**
 	 * 通过建筑ID，查询视频信息
 	 * @param estateId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listVideoByEstateId(Integer estateId);
+	List<AppEstatefileEntity> listVideoByEstateId(Long estateId);
 
 	/**
 	 * 通过房屋ID，查询图片信息
 	 * @param SuiteId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listImageBySuiteId(Integer SuiteId);
+	List<AppEstatefileEntity> listImageBySuiteId(Long SuiteId);
 
 	/**
 	 * 通过建筑ID，查询视频信息
 	 * @param SuiteId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listVideoBySuiteId(Integer SuiteId);
+	List<AppEstatefileEntity> listVideoBySuiteId(Long SuiteId);
 
 }

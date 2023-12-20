@@ -14,6 +14,6 @@ public interface AppContractMapper extends BaseMapper<AppContractEntity> {
 	 * @param suiteId
 	 * @return
 	 */
-	List<AppSuiteMapper> listContractsBySuiteId(Integer suiteId);
+	List<AppSuiteMapper> listContractsBySuiteId(Long suiteId);
 
 }

@@ -48,7 +48,7 @@ public class EstateVO implements Serializable {
 	 */
 	@TableId(type = IdType.ASSIGN_ID)
 	@Schema(description="建筑ID")
-	private Integer estateId;
+	private Long estateId;
 
 	/**
 	 * 建筑名称

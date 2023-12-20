@@ -20,9 +20,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AppSuiteServiceImpl extends ServiceImpl<AppSuiteMapper, AppSuiteEntity> implements AppSuiteService {
 
-	private final AppSuiteMapper suiteMapper;
-
-
 	@Override
 	public IPage getSuitesAllPage(Page page, SuiteVO suiteVO) {
 		return baseMapper.getSuiteVosPage(page, suiteVO);

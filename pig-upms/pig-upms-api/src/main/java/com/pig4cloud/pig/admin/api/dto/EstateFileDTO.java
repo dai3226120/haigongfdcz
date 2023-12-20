@@ -38,13 +38,19 @@ public class EstateFileDTO extends AppEstatefileEntity {
 	 * 所属建筑_关联ID
 	 */
 	@Schema(description="所属建筑_关联ID")
-	private Integer estateId;
+	private Long estateId;
 
 	/**
 	 * 所属房屋_关联ID
 	 */
 	@Schema(description="所属房屋_关联ID")
-	private Integer suiteId;
+	private Long suiteId;
+
+	/**
+	 * 所属合同_关联ID
+	 */
+	@Schema(description="所属合同_关联ID")
+	private Long contractId;
 
 
 }

@@ -49,13 +49,13 @@ public class SuiteDTO extends AppSuiteEntity {
 	 */
 	@TableId(type = IdType.ASSIGN_ID)
 	@Schema(description="房屋ID")
-	private Integer suiteId;
+	private Long suiteId;
 
 	/**
 	 * 所属建筑_关联ID
 	 */
 	@Schema(description="所属建筑_关联ID")
-	private Integer estateId;
+	private Long estateId;
 
 	/**
 	 * 所在楼层
