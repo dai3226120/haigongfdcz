@@ -50,8 +50,9 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 	public R uploadFile(MultipartFile file, EstateFileDTO estateFileDTO) {
 		SysFile sysFile;
 		String fileName;
-
 //		String fileName = IdUtil.simpleUUID() + StrUtil.DOT + FileUtil.extName(file.getOriginalFilename());
+
+
 		Map<String, String> resultMap = new HashMap<>(4);
 		resultMap.put("bucketName", properties.getBucketName());
 		resultMap.put("estateId", estateFileDTO.getEstateId() == null ? null : estateFileDTO.getEstateId().toString());
@@ -100,7 +101,8 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 		estatefile.setType(FileUtil.extName(file.getOriginalFilename()));
 		estatefile.setBucketName(properties.getBucketName());
 		estatefile.setEstateId(estateFileDTO.getEstateId());
-		estatefile.setSuiteId(estatefile.getSuiteId());
+		estatefile.setSuiteId(estateFileDTO.getSuiteId());
+		estatefile.setContractId(estateFileDTO.getContractId());
 		this.save(estatefile);
 	}
 
