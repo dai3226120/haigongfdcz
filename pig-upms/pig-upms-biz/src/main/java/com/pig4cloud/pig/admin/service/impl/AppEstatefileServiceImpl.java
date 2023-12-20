@@ -94,14 +94,15 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 	 * @param file 上传文件格式
 	 * @param fileName 文件名
 	 */
+//	private void estateFileLog(Long id, MultipartFile file, String fileName, String fileUrl, EstateFileDTO estateFileDTO) {
 	private void estateFileLog(Long id, MultipartFile file, String fileName, String fileUrl, EstateFileDTO estateFileDTO) {
 		AppEstatefileEntity estatefile = new AppEstatefileEntity();
 		estatefile.setEstatefileId(id);
-		estatefile.setEstatefileName(fileName);
-		estatefile.setOriginal(file.getOriginalFilename());
-		estatefile.setFileSize(file.getSize());
-		estatefile.setType(FileUtil.extName(file.getOriginalFilename()));
-		estatefile.setBucketName(properties.getBucketName());
+//		estatefile.setEstatefileName(fileName);
+//		estatefile.setOriginal(file.getOriginalFilename());
+//		estatefile.setFileSize(file.getSize());
+//		estatefile.setType(FileUtil.extName(file.getOriginalFilename()));
+//		estatefile.setBucketName(properties.getBucketName());
 		estatefile.setFileUrl(fileUrl);
 		estatefile.setEstateId(estateFileDTO.getEstateId());
 		estatefile.setSuiteId(estateFileDTO.getSuiteId());

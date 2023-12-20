@@ -51,10 +51,10 @@
 		<result property="selfuseArea" column="selfuse_area"/>
 		<result property="vacantArea" column="vacant_area"/>
 		<result property="suiteNum" column="suite_num"/>
-		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
-		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoByEstateId" column="estate_id">
 		</collection>
 	</resultMap>
@@ -85,10 +85,10 @@
 		<result property="selfuseArea" column="selfuse_area"/>
 		<result property="vacantArea" column="vacant_area"/>
 		<result property="suiteNum" column="suite_num"/>
-		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
-		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoByEstateId" column="estate_id">
 		</collection>
 		<collection property="suiteDTOList" ofType="com.pig4cloud.pig.admin.api.dto.SuiteDTO"
@@ -122,10 +122,10 @@
 		<result property="selfuseArea" column="selfuse_area"/>
 		<result property="vacantArea" column="vacant_area"/>
 		<result property="suiteNum" column="suite_num"/>
-		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
-		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="estatefileVideoList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoByEstateId" column="estate_id">
 		</collection>
 		<collection property="suiteContractVoList" ofType="com.pig4cloud.pig.admin.api.vo.SuiteContractVo"

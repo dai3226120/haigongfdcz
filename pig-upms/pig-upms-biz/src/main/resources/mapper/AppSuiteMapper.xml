@@ -37,10 +37,10 @@
 		<id property="createTime" column="create_time"/>
 		<id property="updateBy" column="update_by"/>
 		<id property="updateTime" column="update_time"/>
-		<collection property="suitefileImageList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="suitefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageBySuiteId" column="suite_id">
 		</collection>
-		<collection property="suitefileVideoList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="suitefileVideoList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoBySuiteId" column="suite_id">
 		</collection>
 	</resultMap>
@@ -97,10 +97,10 @@
 		<id property="createTime" column="create_time"/>
 		<id property="updateBy" column="update_by"/>
 		<id property="updateTime" column="update_time"/>
-		<collection property="suitefileImageList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="suitefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageBySuiteId" column="suite_id">
 		</collection>
-		<collection property="suitefileVideoList" ofType="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity"
+		<collection property="suitefileVideoList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoBySuiteId" column="suite_id">
 		</collection>
 		<collection property="contractEntityList" ofType="com.pig4cloud.pig.admin.api.entity.AppContractEntity"

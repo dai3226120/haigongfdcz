@@ -26,6 +26,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity;
 import com.pig4cloud.pig.admin.api.entity.AppSuiteEntity;
 import com.pig4cloud.pig.admin.api.entity.SysUser;
+import com.pig4cloud.pig.admin.api.vo.EstatefileVO;
 import com.pig4cloud.pig.admin.api.vo.SuiteVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -143,11 +144,11 @@ public class SuiteDTO extends AppSuiteEntity {
 	 * 房屋图片列表
 	 */
 	@Schema(description = "房屋图片列表")
-	private List<AppEstatefileEntity> suitefileImageList;
+	private List<EstatefileVO> suitefileImageList;
 
 	/**
 	 * 房屋视频列表
 	 */
 	@Schema(description = "房屋视频列表")
-	private List<AppEstatefileEntity> suitefileVideoList;
+	private List<EstatefileVO> suitefileVideoList;
 }

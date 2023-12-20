@@ -1,10 +1,11 @@
-package com.pig4cloud.pig.admin.api.entity;
+package com.pig4cloud.pig.admin.api.vo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.time.LocalDateTime;
 
 /**
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @TableName("app_estatefile")
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "资产文件")
-public class AppEstatefileEntity extends Model<AppEstatefileEntity> {
+public class EstatefileVO extends Model<EstatefileVO> {
 
 
 	/**
@@ -28,10 +29,40 @@ public class AppEstatefileEntity extends Model<AppEstatefileEntity> {
     private Long estatefileId;
 
 	/**
+	* 资产文件名
+	*/
+    @Schema(description="资产文件名")
+    private String estatefileName;
+
+	/**
+	* 文件存储桶名称
+	*/
+    @Schema(description="文件存储桶名称")
+    private String bucketName;
+
+	/**
+	* 原始文件名
+	*/
+    @Schema(description="原始文件名")
+    private String original;
+
+	/**
+	 * 文件类型
+	 */
+	@Schema(description="文件类型")
+	private String type;
+
+	/**
 	 * 文件路径
 	 */
 	@Schema(description="文件路径")
 	private String fileUrl;
+
+	/**
+	* 文件大小
+	*/
+    @Schema(description="文件大小")
+    private Long fileSize;
 
 	/**
 	* 关联的建筑ID

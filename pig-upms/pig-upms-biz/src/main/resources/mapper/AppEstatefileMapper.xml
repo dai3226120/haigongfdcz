@@ -3,67 +3,159 @@
 
 <mapper namespace="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper">
 
-  <resultMap id="appEstatefileMap" type="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity">
-        <id property="estatefileId" column="estatefile_id"/>
-        <result property="estatefileName" column="estatefile_name"/>
-        <result property="bucketName" column="bucket_name"/>
-        <result property="original" column="original"/>
-        <result property="type" column="type"/>
-        <result property="fileSize" column="file_size"/>
-	  	<result property="fileUrl" column="file_url"/>
-        <result property="estateId" column="estate_id"/>
-        <result property="suiteId" column="suite_id"/>
-	  	<result property="contractId" column="contract_id"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time"/>
-  </resultMap>
+	<resultMap id="appEstatefileMap" type="com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity">
+		<id property="estatefileId" column="estatefile_id"/>
+		<result property="fileUrl" column="file_url"/>
+		<result property="estateId" column="estate_id"/>
+		<result property="suiteId" column="suite_id"/>
+		<result property="contractId" column="contract_id"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="updateTime" column="update_time"/>
+	</resultMap>
+
+	<resultMap id="estatefileVoMap" type="com.pig4cloud.pig.admin.api.vo.EstatefileVO">
+		<id property="estatefileId" column="estatefile_id"/>
+		<result property="estatefileName" column="estatefile_name"/>
+		<result property="bucketName" column="bucket_name"/>
+		<result property="original" column="original"/>
+		<result property="type" column="type"/>
+		<result property="fileSize" column="file_size"/>
+		<result property="fileUrl" column="file_url"/>
+		<result property="estateId" column="estate_id"/>
+		<result property="suiteId" column="suite_id"/>
+		<result property="contractId" column="contract_id"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="updateTime" column="update_time"/>
+	</resultMap>
 
 
 	<!-- 通过建筑ID，查询图片信息-->
-	<select id="listImageByEstateId" resultMap="appEstatefileMap">
-		SELECT *
-		FROM app_estatefile
-		WHERE app_estatefile.estate_id = #{estateId}
-			AND (app_estatefile.type = 'png' or app_estatefile.type = 'jpg' or app_estatefile.type = 'jpeg')
+	<select id="listImageByEstateId" resultMap="estatefileVoMap">
+		SELECT
+			app_estatefile.estatefile_id,
+			sys_file.file_name,
+			sys_file.bucket_name,
+			sys_file.original,
+			sys_file.type,
+			sys_file.file_size,
+			app_estatefile.file_url,
+			app_estatefile.estate_id,
+			app_estatefile.suite_id,
+			app_estatefile.contract_id,
+			app_estatefile.create_time,
+			app_estatefile.create_by,
+			app_estatefile.update_time,
+			app_estatefile.update_by
+		FROM
+			app_estatefile
+		LEFT JOIN sys_file ON app_estatefile.estatefile_id = sys_file.id
+		WHERE
+		    app_estatefile.estate_id = #{estateId}
+		  AND sys_file.del_flag != 1
+		  AND (
+				sys_file.type = 'png'
+				OR sys_file.type = 'jpg'
+				OR sys_file.type = 'jpeg'
+			)
 	</select>
 
 	<!-- 通过建筑ID，查询视频信息-->
-	<select id="listVideoByEstateId" resultMap="appEstatefileMap">
-		SELECT *
-		FROM app_estatefile
-		WHERE app_estatefile.estate_id = #{estateId}
-			AND (
-			    	app_estatefile.type = 'mp4'
-			        or app_estatefile.type = 'avi'
-			        or app_estatefile.type = 'wmv'
-			        or app_estatefile.type = 'flv'
-			        or app_estatefile.type = 'rmvb'
-			        or app_estatefile.type = '3gp'
-			    )
+	<select id="listVideoByEstateId" resultMap="estatefileVoMap">
+		SELECT
+			app_estatefile.estatefile_id,
+			sys_file.file_name,
+			sys_file.bucket_name,
+			sys_file.original,
+			sys_file.type,
+			sys_file.file_size,
+			app_estatefile.file_url,
+			app_estatefile.estate_id,
+			app_estatefile.suite_id,
+			app_estatefile.contract_id,
+			app_estatefile.create_time,
+			app_estatefile.create_by,
+			app_estatefile.update_time,
+			app_estatefile.update_by
+		FROM
+			app_estatefile
+		LEFT JOIN sys_file ON app_estatefile.estatefile_id = sys_file.id
+		WHERE
+		    app_estatefile.estate_id = #{estateId}
+		  AND sys_file.del_flag != 1
+		  AND (
+					sys_file.type = 'mp4'
+				OR sys_file.type = 'avi'
+				OR sys_file.type = 'wmv'
+				OR sys_file.type = 'flv'
+				OR sys_file.type = 'rmvb'
+				OR sys_file.type = '3gp'
+			)
 	</select>
 
 	<!-- 通过房屋ID，查询图片信息-->
-	<select id="listImageBySuiteId" resultMap="appEstatefileMap">
-		SELECT *
-		FROM app_estatefile
-		WHERE app_estatefile.suite_id = #{SuiteId}
-			AND (app_estatefile.type = 'png' or app_estatefile.type = 'jpg' or app_estatefile.type = 'jpeg')
+	<select id="listImageBySuiteId" resultMap="estatefileVoMap">
+		SELECT
+			app_estatefile.estatefile_id,
+			sys_file.file_name,
+			sys_file.bucket_name,
+			sys_file.original,
+			sys_file.type,
+			sys_file.file_size,
+			app_estatefile.file_url,
+			app_estatefile.estate_id,
+			app_estatefile.suite_id,
+			app_estatefile.contract_id,
+			app_estatefile.create_time,
+			app_estatefile.create_by,
+			app_estatefile.update_time,
+			app_estatefile.update_by
+		FROM
+			app_estatefile
+		LEFT JOIN sys_file ON app_estatefile.estatefile_id = sys_file.id
+		WHERE
+		    app_estatefile.suite_id = #{SuiteId}
+		  AND sys_file.del_flag != 1
+		  AND (
+					sys_file.type = 'png'
+				OR sys_file.type = 'jpg'
+				OR sys_file.type = 'jpeg'
+			)
 	</select>
 
 	<!-- 通过房屋ID，查询视频信息-->
-	<select id="listVideoBySuiteId" resultMap="appEstatefileMap">
-		SELECT *
-		FROM app_estatefile
-		WHERE app_estatefile.suite_id = #{SuiteId}
+	<select id="listVideoBySuiteId" resultMap="estatefileVoMap">
+		SELECT
+			app_estatefile.estatefile_id,
+			sys_file.file_name,
+			sys_file.bucket_name,
+			sys_file.original,
+			sys_file.type,
+			sys_file.file_size,
+			app_estatefile.file_url,
+			app_estatefile.estate_id,
+			app_estatefile.suite_id,
+			app_estatefile.contract_id,
+			app_estatefile.create_time,
+			app_estatefile.create_by,
+			app_estatefile.update_time,
+			app_estatefile.update_by
+		FROM
+			app_estatefile
+		LEFT JOIN sys_file ON app_estatefile.estatefile_id = sys_file.id
+		WHERE
+		    app_estatefile.suite_id = #{SuiteId}
+		  AND sys_file.del_flag != 1
 		  AND (
-				app_estatefile.type = 'mp4'
-				or app_estatefile.type = 'avi'
-				or app_estatefile.type = 'wmv'
-				or app_estatefile.type = 'flv'
-				or app_estatefile.type = 'rmvb'
-				or app_estatefile.type = '3gp'
-				)
+					sys_file.type = 'mp4'
+				OR sys_file.type = 'avi'
+				OR sys_file.type = 'wmv'
+				OR sys_file.type = 'flv'
+				OR sys_file.type = 'rmvb'
+				OR sys_file.type = '3gp'
+			)
 	</select>
 </mapper>

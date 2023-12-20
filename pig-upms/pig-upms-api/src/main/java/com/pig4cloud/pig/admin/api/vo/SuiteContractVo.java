@@ -124,13 +124,13 @@ public class SuiteContractVo extends Model<SuiteContractVo> {
 	 * 房屋图片列表
 	 */
 	@Schema(description = "房屋图片列表")
-	private List<AppEstatefileEntity> suitefileImageList;
+	private List<EstatefileVO> suitefileImageList;
 
 	/**
 	 * 房屋视频列表
 	 */
 	@Schema(description = "房屋视频列表")
-	private List<AppEstatefileEntity> suitefileVideoList;
+	private List<EstatefileVO> suitefileVideoList;
 
 	/**
 	 * 合同列表

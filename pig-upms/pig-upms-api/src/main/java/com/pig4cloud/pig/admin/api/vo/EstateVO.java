@@ -198,12 +198,12 @@ public class EstateVO implements Serializable {
 	 * 建筑图片列表
 	 */
 	@Schema(description = "建筑图片列表")
-	private List<AppEstatefileEntity> estatefileImageList;
+	private List<EstatefileVO> estatefileImageList;
 
 	/**
 	 * 建筑视频列表
 	 */
 	@Schema(description = "建筑视频列表")
-	private List<AppEstatefileEntity> estatefileVideoList;
+	private List<EstatefileVO> estatefileVideoList;
 
 }

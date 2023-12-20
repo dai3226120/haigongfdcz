@@ -3,6 +3,7 @@ package com.pig4cloud.pig.admin.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pig4cloud.pig.admin.api.dto.SuiteDTO;
 import com.pig4cloud.pig.admin.api.entity.AppEstatefileEntity;
+import com.pig4cloud.pig.admin.api.vo.EstatefileVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,20 +23,20 @@ public interface AppEstatefileMapper extends BaseMapper<AppEstatefileEntity> {
 	 * @param estateId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listVideoByEstateId(Long estateId);
+	List<EstatefileVO> listVideoByEstateId(Long estateId);
 
 	/**
 	 * 通过房屋ID，查询图片信息
 	 * @param SuiteId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listImageBySuiteId(Long SuiteId);
+	List<EstatefileVO> listImageBySuiteId(Long SuiteId);
 
 	/**
 	 * 通过建筑ID，查询视频信息
 	 * @param SuiteId
 	 * @return
 	 */
-	List<AppEstatefileEntity> listVideoBySuiteId(Long SuiteId);
+	List<EstatefileVO> listVideoBySuiteId(Long SuiteId);
 
 }
