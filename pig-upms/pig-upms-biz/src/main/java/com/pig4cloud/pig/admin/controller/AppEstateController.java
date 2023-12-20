@@ -62,7 +62,7 @@ public class AppEstateController {
     @Operation(summary = "通过id查询" , description = "通过id查询" )
     @GetMapping("/{estateId}" )
     @PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
-    public R getById(@PathVariable("estateId" ) Integer estateId) {
+    public R getById(@PathVariable("estateId" ) Long estateId) {
         return R.ok(appEstateService.getById(estateId));
     }
 
@@ -101,7 +101,7 @@ public class AppEstateController {
     @SysLog("通过id删除建筑" )
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('pig_appEstate_del')" )
-    public R removeById(@RequestBody Integer[] ids) {
+    public R removeById(@RequestBody Long[] ids) {
         return R.ok(appEstateService.removeBatchByIds(CollUtil.toList(ids)));
     }
 
@@ -115,7 +115,7 @@ public class AppEstateController {
     @ResponseExcel
     @GetMapping("/export")
     @PreAuthorize("@pms.hasPermission('pig_appEstate_export')" )
-    public List<AppEstateEntity> export(AppEstateEntity appEstate,Integer[] ids) {
+    public List<AppEstateEntity> export(AppEstateEntity appEstate,Long[] ids) {
         return appEstateService.list(Wrappers.lambdaQuery(appEstate).in(ArrayUtil.isNotEmpty(ids), AppEstateEntity::getEstateId, ids));
     }
 

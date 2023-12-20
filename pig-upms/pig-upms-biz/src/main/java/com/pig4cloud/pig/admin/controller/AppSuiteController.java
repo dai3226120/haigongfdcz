@@ -61,7 +61,7 @@ public class AppSuiteController {
     @Operation(summary = "通过id查询" , description = "通过id查询" )
     @GetMapping("/{suiteId}" )
     @PreAuthorize("@pms.hasPermission('admin_appSuite_view')" )
-    public R getById(@PathVariable("suiteId" ) Integer suiteId) {
+    public R getById(@PathVariable("suiteId" ) Long suiteId) {
         return R.ok(appSuiteService.getById(suiteId));
     }
 
@@ -100,7 +100,7 @@ public class AppSuiteController {
     @SysLog("通过id删除房屋" )
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin_appSuite_del')" )
-    public R removeById(@RequestBody Integer[] ids) {
+    public R removeById(@RequestBody Long[] ids) {
         return R.ok(appSuiteService.removeBatchByIds(CollUtil.toList(ids)));
     }
 
@@ -114,7 +114,7 @@ public class AppSuiteController {
     @ResponseExcel
     @GetMapping("/export")
     @PreAuthorize("@pms.hasPermission('admin_appSuite_export')" )
-    public List<AppSuiteEntity> export(AppSuiteEntity appSuite,Integer[] ids) {
+    public List<AppSuiteEntity> export(AppSuiteEntity appSuite,Long[] ids) {
         return appSuiteService.list(Wrappers.lambdaQuery(appSuite).in(ArrayUtil.isNotEmpty(ids), AppSuiteEntity::getSuiteId, ids));
     }
 
