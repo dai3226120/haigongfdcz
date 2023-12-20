@@ -10,6 +10,7 @@
         <result property="original" column="original"/>
         <result property="type" column="type"/>
         <result property="fileSize" column="file_size"/>
+	  	<result property="fileUrl" column="file_url"/>
         <result property="estateId" column="estate_id"/>
         <result property="suiteId" column="suite_id"/>
 	  	<result property="contractId" column="contract_id"/>

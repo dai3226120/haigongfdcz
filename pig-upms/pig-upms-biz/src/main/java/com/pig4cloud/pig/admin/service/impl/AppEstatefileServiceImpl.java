@@ -51,6 +51,7 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 		SysFile sysFile;
 		String fileName;
 //		String fileName = IdUtil.simpleUUID() + StrUtil.DOT + FileUtil.extName(file.getOriginalFilename());
+		String fileUrl;
 
 
 		Map<String, String> resultMap = new HashMap<>(4);
@@ -63,8 +64,9 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 			jsonString = jsonString.substring(1, jsonString.length() - 1).replaceAll("([^,=\\s]+)=([^,}]+)", "\"$1\":\"$2\"");
 			JSONObject jsonObject = JSONObject.parseObject("{" + jsonString + "}");
 			fileName = jsonObject.getString("fileName");
+			fileUrl = String.format("/admin/sys-file/%s/%s", properties.getBucketName(), fileName);
 			resultMap.put("fileName", fileName);
-			resultMap.put("url", String.format("/admin/sys-file/%s/%s", properties.getBucketName(), fileName));
+			resultMap.put("url", fileUrl);
 
 
 			LambdaQueryWrapper<SysFile> wrapper = Wrappers.<SysFile>lambdaQuery();
@@ -77,7 +79,7 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 			resultMap.put("fileId", sysFile != null ? sysFile.getId().toString() : null);
 
 			// 文件管理数据记录,收集管理追踪文件
-			estateFileLog(sysFile.getId(), file, fileName, estateFileDTO);
+			estateFileLog(sysFile.getId(), file, fileName, fileUrl, estateFileDTO);
 		}
 		catch (Exception e) {
 			log.error("上传失败", e);
@@ -92,7 +94,7 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 	 * @param file 上传文件格式
 	 * @param fileName 文件名
 	 */
-	private void estateFileLog(Long id, MultipartFile file, String fileName, EstateFileDTO estateFileDTO) {
+	private void estateFileLog(Long id, MultipartFile file, String fileName, String fileUrl, EstateFileDTO estateFileDTO) {
 		AppEstatefileEntity estatefile = new AppEstatefileEntity();
 		estatefile.setEstatefileId(id);
 		estatefile.setEstatefileName(fileName);
@@ -100,6 +102,7 @@ public class AppEstatefileServiceImpl extends ServiceImpl<AppEstatefileMapper, A
 		estatefile.setFileSize(file.getSize());
 		estatefile.setType(FileUtil.extName(file.getOriginalFilename()));
 		estatefile.setBucketName(properties.getBucketName());
+		estatefile.setFileUrl(fileUrl);
 		estatefile.setEstateId(estateFileDTO.getEstateId());
 		estatefile.setSuiteId(estateFileDTO.getSuiteId());
 		estatefile.setContractId(estateFileDTO.getContractId());

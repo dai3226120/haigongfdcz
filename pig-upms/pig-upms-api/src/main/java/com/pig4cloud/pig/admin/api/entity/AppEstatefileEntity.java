@@ -46,10 +46,16 @@ public class AppEstatefileEntity extends Model<AppEstatefileEntity> {
     private String original;
 
 	/**
-	* 文件类型
-	*/
-    @Schema(description="文件类型")
-    private String type;
+	 * 文件类型
+	 */
+	@Schema(description="文件类型")
+	private String type;
+
+	/**
+	 * 文件路径
+	 */
+	@Schema(description="文件路径")
+	private String fileUrl;
 
 	/**
 	* 文件大小
