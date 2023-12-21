@@ -7,6 +7,10 @@
         <id property="contractId" column="contract_id"/>
         <id property="suiteId" column="suite_id"/>
         <id property="contractTenant" column="contract_tenant"/>
+	  	<id property="contactName" column="contact_name"/>
+	  	<id property="contactPhone" column="contact_phone"/>
+	  	<id property="contractAmount" column="contract_amount"/>
+	  	<id property="contractPayment" column="contract_payment"/>
         <id property="contractIsupdatecontract" column="contract_isupdatecontract"/>
         <id property="contractContractnumber" column="contract_contractnumber"/>
         <id property="contractBusinessmode" column="contract_businessmode"/>

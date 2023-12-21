@@ -34,10 +34,34 @@ public class AppContractEntity extends Model<AppContractEntity> {
     private Long suiteId;
 
 	/**
-	* 承租人
-	*/
-    @Schema(description="承租人")
-    private String contractTenant;
+	 * 承租人
+	 */
+	@Schema(description="承租人")
+	private String contractTenant;
+
+	/**
+	 * 合同联系人
+	 */
+	@Schema(description="合同联系人")
+	private String contactName;
+
+	/**
+	 * 合同联系方式
+	 */
+	@Schema(description="合同联系方式")
+	private String contactPhone;
+
+	/**
+	 * 合同金额
+	 */
+	@Schema(description="合同金额")
+	private Double contractAmount;
+
+	/**
+	 * 合同支付方式
+	 */
+	@Schema(description="合同支付方式")
+	private String contractPayment;
 
 	/**
 	* 是否上传合同
