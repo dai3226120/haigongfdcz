@@ -101,6 +101,7 @@
 		<id property="createTime" column="create_time"/>
 		<id property="updateBy" column="update_by"/>
 		<id property="updateTime" column="update_time"/>
+		<id property="contractStatus" column="contract_status"/>
 		<collection property="suitefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageBySuiteId" column="suite_id">
 		</collection>
@@ -108,7 +109,8 @@
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoBySuiteId" column="suite_id">
 		</collection>
 		<collection property="contractEntityList" ofType="com.pig4cloud.pig.admin.api.entity.AppContractEntity"
-					select="com.pig4cloud.pig.admin.mapper.AppContractMapper.listContractsBySuiteId" column="suite_id">
+					select="com.pig4cloud.pig.admin.mapper.AppContractMapper.listContractsBySuiteId"
+					column="suiteId=suite_id, contractStatus=contract_status">
 		</collection>
 	</resultMap>
 
@@ -252,6 +254,7 @@
 	<select id="listSuiteConstractsBySuiteId" resultMap="appSuiteContractMap">
 		SELECT *
 		FROM app_suite
+		LEFT JOIN app_contract ON app_contract.suite_id = app_suite.suite_id
 		<where>
 			app_suite.suite_id != 0
 			<if test="estateId != null and estateId != ''">
@@ -267,6 +270,9 @@
 			<if test="suiteProperty != null and suiteProperty != ''">
 				<bind name="suitePropertyLike" value="'%'+suiteProperty+'%'"/>
 				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
+			<if test="contractStatus != null and contractStatus != ''">
+				AND app_contract.contract_status = #{contractStatus}
 			</if>
 		</where>
 	</select>

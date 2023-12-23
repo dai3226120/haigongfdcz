@@ -53,5 +53,5 @@ public interface AppSuiteMapper extends BaseMapper<AppSuiteEntity> {
 	 * @param suiteProperty
 	 * @return
 	 */
-	List<SuiteVO> listSuiteConstractsBySuiteId(Integer estateId, String suiteCode, Integer suiteIsselfuse, String suiteProperty);
+	List<SuiteVO> listSuiteConstractsBySuiteId(Integer estateId, String suiteCode, Integer suiteIsselfuse, String suiteProperty, String contractStatus);
 }

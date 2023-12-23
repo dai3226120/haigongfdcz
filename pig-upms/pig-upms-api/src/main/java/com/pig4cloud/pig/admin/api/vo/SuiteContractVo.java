@@ -143,4 +143,10 @@ public class SuiteContractVo extends Model<SuiteContractVo> {
 	 */
 	@Schema(description = "对应的合同列表")
 	private List<AppContractEntity> contractEntityList;
+
+	/**
+	 * 合同状态
+	 */
+	@Schema(description="合同状态")
+	private String contractStatus;
 }

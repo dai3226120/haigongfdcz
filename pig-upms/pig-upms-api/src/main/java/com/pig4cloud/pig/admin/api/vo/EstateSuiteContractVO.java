@@ -227,4 +227,10 @@ public class EstateSuiteContractVO implements Serializable {
 	@Schema(description="房屋性质")
 	private String suiteProperty;
 
+	/**
+	 * 合同状态
+	 */
+	@Schema(description="合同状态")
+	private String contractStatus;
+
 }

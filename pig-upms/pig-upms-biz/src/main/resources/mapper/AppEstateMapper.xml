@@ -129,6 +129,7 @@
 		<result property="suiteCode" column="suite_code"/>
 		<result property="suiteIsselfuse" column="suite_isselfuse"/>
 		<result property="suiteProperty" column="suite_suiteproperty"/>
+		<result property="contractStatus" column="contract_status"/>
 		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
@@ -137,7 +138,7 @@
 		</collection>
 		<collection property="suiteContractVoList" ofType="com.pig4cloud.pig.admin.api.vo.SuiteContractVo"
 					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuiteConstractsBySuiteId"
-					column="{estateId=estate_id,suiteCode=suite_code,suiteIsselfuse=suite_isselfuse,suiteProperty=suite_suiteproperty}">
+					column="{estateId=estate_id, suiteCode=suite_code, suiteIsselfuse=suite_isselfuse, suiteProperty=suite_suiteproperty, contractStatus=contract_status}">
 		</collection>
 	</resultMap>
 
@@ -334,7 +335,8 @@
 		COUNT(app_suite.suite_id) AS suite_num,
 		app_suite.suite_code,
 		app_suite.suite_isselfuse,
-		app_suite.suite_suiteproperty
+		app_suite.suite_suiteproperty,
+		app_contract.contract_status
 		FROM app_estate
 		LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
 		LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
@@ -343,6 +345,7 @@
 		LEFT JOIN app_estatetype ON app_estate.estate_estatetype_id = app_estatetype.estatetype_id
 		LEFT JOIN app_landstatus ON app_estate.estate_landstatus_id = app_landstatus.landstatus_id
 		LEFT JOIN app_suite ON app_suite.estate_id = app_estate.estate_id
+		LEFT JOIN app_contract ON app_contract.suite_id = app_suite.suite_id
 		<where>
 			app_estate.estate_id != 0
 			<if test="query.estateId != null and query.estateId != ''">
@@ -385,6 +388,9 @@
 			<if test="query.suiteProperty != null and query.suiteProperty != ''">
 				<bind name="suitePropertyLike" value="'%'+query.suiteProperty+'%'"/>
 				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
+			<if test="query.contractStatus != null and query.contractStatus != ''">
+				AND app_contract.contract_status = #{query.contractStatus}
 			</if>
 		</where>
 

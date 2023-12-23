@@ -18,9 +18,10 @@ public interface AppContractMapper extends BaseMapper<AppContractEntity> {
 	/**
 	 * 通过房屋ID，查询合同信息
 	 * @param suiteId
+	 * @param suiteId
 	 * @return
 	 */
-	List<AppSuiteMapper> listContractsBySuiteId(Long suiteId);
+	List<AppSuiteMapper> listContractsBySuiteId(Long suiteId, String contractStatus);
 
 	/**
 	 * 分页查询合同信息（含所有）

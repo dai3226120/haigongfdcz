@@ -53,10 +53,18 @@
 	<select id="listContractsBySuiteId" resultMap="appContractMap">
 		SELECT *
 		FROM app_contract
-		WHERE app_contract.suite_id = #{suiteId}
+		<where>
+			app_contract.contract_id != 0
+			<if test="estateId != null and estateId != ''">
+				AND app_contract.suite_id = #{suiteId}
+			</if>
+			<if test="contractStatus != null and contractStatus != ''">
+				AND app_contract.contract_status = #{contractStatus}
+			</if>
+		</where>
 	</select>
 
-	<!-- 查询房合同息-->
+	<!-- 查询合同信息-->
 	<select id="getContractVosPage" resultMap="contractVoMap">
 		SELECT *
 		FROM app_contract
