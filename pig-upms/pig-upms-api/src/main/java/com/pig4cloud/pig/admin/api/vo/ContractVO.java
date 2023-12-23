@@ -1,10 +1,11 @@
-package com.pig4cloud.pig.admin.api.entity;
+package com.pig4cloud.pig.admin.api.vo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.time.LocalDateTime;
 
 /**
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @TableName("app_contract")
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "合同")
-public class AppContractEntity extends Model<AppContractEntity> {
+public class ContractVO extends Model<ContractVO> {
 
 
 	/**

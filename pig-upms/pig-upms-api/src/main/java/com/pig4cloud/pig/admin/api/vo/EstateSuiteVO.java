@@ -211,4 +211,6 @@ public class EstateSuiteVO implements Serializable {
 	@Schema(description = "拥有的房屋列表")
 	private List<SuiteDTO> suiteDTOList;
 
+
+
 }

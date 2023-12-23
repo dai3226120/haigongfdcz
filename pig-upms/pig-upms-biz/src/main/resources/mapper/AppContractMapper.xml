@@ -3,34 +3,100 @@
 
 <mapper namespace="com.pig4cloud.pig.admin.mapper.AppContractMapper">
 
-  <resultMap id="appContractMap" type="com.pig4cloud.pig.admin.api.entity.AppContractEntity">
-        <id property="contractId" column="contract_id"/>
-        <id property="suiteId" column="suite_id"/>
-        <id property="contractTenant" column="contract_tenant"/>
-	  	<id property="contactName" column="contact_name"/>
-	  	<id property="contactPhone" column="contact_phone"/>
-	  	<id property="contractAmount" column="contract_amount"/>
-	  	<id property="contractPayment" column="contract_payment"/>
-        <id property="contractIsupdatecontract" column="contract_isupdatecontract"/>
-        <id property="contractContractnumber" column="contract_contractnumber"/>
-        <id property="contractBusinessmode" column="contract_businessmode"/>
-        <id property="contractRenttype" column="contract_renttype"/>
-        <id property="contractStartdate" column="contract_startdate"/>
-        <id property="contractEnddate" column="contract_enddate"/>
-        <id property="contractDailyrent" column="contract_dailyrent"/>
-        <id property="contractYearlyrent" column="contract_yearlyrent"/>
-        <id property="contractStatus" column="contract_status"/>
-        <id property="createBy" column="create_by"/>
-        <id property="createTime" column="create_time"/>
-        <id property="updateBy" column="update_by"/>
-        <id property="updateTime" column="update_time"/>
-  </resultMap>
+	<resultMap id="appContractMap" type="com.pig4cloud.pig.admin.api.entity.AppContractEntity">
+		<id property="contractId" column="contract_id"/>
+		<id property="suiteId" column="suite_id"/>
+		<id property="contractTenant" column="contract_tenant"/>
+		<id property="contactName" column="contact_name"/>
+		<id property="contactPhone" column="contact_phone"/>
+		<id property="contractAmount" column="contract_amount"/>
+		<id property="contractPayment" column="contract_payment"/>
+		<id property="contractIsupdatecontract" column="contract_isupdatecontract"/>
+		<id property="contractContractnumber" column="contract_contractnumber"/>
+		<id property="contractBusinessmode" column="contract_businessmode"/>
+		<id property="contractRenttype" column="contract_renttype"/>
+		<id property="contractStartdate" column="contract_startdate"/>
+		<id property="contractEnddate" column="contract_enddate"/>
+		<id property="contractDailyrent" column="contract_dailyrent"/>
+		<id property="contractYearlyrent" column="contract_yearlyrent"/>
+		<id property="contractStatus" column="contract_status"/>
+		<id property="createBy" column="create_by"/>
+		<id property="createTime" column="create_time"/>
+		<id property="updateBy" column="update_by"/>
+		<id property="updateTime" column="update_time"/>
+	</resultMap>
 
+	<resultMap id="contractVoMap" type="com.pig4cloud.pig.admin.api.vo.ContractVO">
+		<id property="contractId" column="contract_id"/>
+		<id property="suiteId" column="suite_id"/>
+		<id property="contractTenant" column="contract_tenant"/>
+		<id property="contactName" column="contact_name"/>
+		<id property="contactPhone" column="contact_phone"/>
+		<id property="contractAmount" column="contract_amount"/>
+		<id property="contractPayment" column="contract_payment"/>
+		<id property="contractIsupdatecontract" column="contract_isupdatecontract"/>
+		<id property="contractContractnumber" column="contract_contractnumber"/>
+		<id property="contractBusinessmode" column="contract_businessmode"/>
+		<id property="contractRenttype" column="contract_renttype"/>
+		<id property="contractStartdate" column="contract_startdate"/>
+		<id property="contractEnddate" column="contract_enddate"/>
+		<id property="contractDailyrent" column="contract_dailyrent"/>
+		<id property="contractYearlyrent" column="contract_yearlyrent"/>
+		<id property="contractStatus" column="contract_status"/>
+		<id property="createBy" column="create_by"/>
+		<id property="createTime" column="create_time"/>
+		<id property="updateBy" column="update_by"/>
+		<id property="updateTime" column="update_time"/>
+	</resultMap>
 
-	<!-- 通过建筑ID，查询房屋信息-->
+	<!-- 通过房屋ID，查询合同信息-->
 	<select id="listContractsBySuiteId" resultMap="appContractMap">
 		SELECT *
 		FROM app_contract
 		WHERE app_contract.suite_id = #{suiteId}
+	</select>
+
+	<!-- 查询房合同息-->
+	<select id="getContractVosPage" resultMap="contractVoMap">
+		SELECT *
+		FROM app_contract
+		<where>
+			app_contract.contract_id != 0
+			<if test="query.suiteId != null and query.suiteId != ''">
+				AND app_contract.suite_id = #{query.suiteId}
+			</if>
+			<if test="query.contractTenant != null and query.contractTenant != ''">
+				<bind name="contractTenantLike" value="'%'+query.contractTenant+'%'"/>
+				AND app_contract.contract_tenant LIKE #{contractTenantLike}
+			</if>
+			<if test="query.contactName != null and query.contactName != ''">
+				<bind name="contactNameLike" value="'%'+query.contactName+'%'"/>
+				AND app_contract.contact_name LIKE #{contactNameLike}
+			</if>
+			<if test="query.contactPhone != null and query.contactPhone != ''">
+				<bind name="contactPhoneLike" value="'%'+query.contactPhone+'%'"/>
+				AND app_contract.contact_phone LIKE #{contactPhoneLike}
+			</if>
+			<if test="query.contractPayment != null and query.contractPayment != ''">
+				<bind name="contractPaymentLike" value="'%'+query.contractPayment+'%'"/>
+				AND app_contract.contract_payment LIKE #{contractPaymentLike}
+			</if>
+			<if test="query.contractContractnumber != null and query.contractContractnumber != ''">
+				<bind name="contractContractnumberLike" value="'%'+query.contractContractnumber+'%'"/>
+				AND app_contract.contract_contractnumber LIKE #{contractContractnumberLike}
+			</if>
+			<if test="query.contractBusinessmode != null and query.contractBusinessmode != ''">
+				<bind name="contractBusinessmodeLike" value="'%'+query.contractBusinessmode+'%'"/>
+				AND app_contract.contract_businessmode LIKE #{contractBusinessmodeLike}
+			</if>
+			<if test="query.contractRenttype != null and query.contractRenttype != ''">
+				<bind name="contractRenttypeLike" value="'%'+query.contractRenttype+'%'"/>
+				AND app_contract.contract_renttype LIKE #{contractRenttypeLike}
+			</if>
+			<if test="query.contractStatus != null and query.contractStatus != ''">
+				<bind name="contractStatusLike" value="'%'+query.contractStatus+'%'"/>
+				AND app_contract.contract_status LIKE #{contractStatusLike}
+			</if>
+		</where>
 	</select>
 </mapper>

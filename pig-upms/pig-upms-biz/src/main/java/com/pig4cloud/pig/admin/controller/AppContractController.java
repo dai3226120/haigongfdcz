@@ -5,6 +5,8 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.pig4cloud.pig.admin.api.dto.EstateDTO;
+import com.pig4cloud.pig.admin.api.vo.ContractVO;
 import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.admin.api.entity.AppContractEntity;
@@ -117,4 +119,17 @@ public class AppContractController {
     public List<AppContractEntity> export(AppContractEntity appContract,Integer[] ids) {
         return appContractService.list(Wrappers.lambdaQuery(appContract).in(ArrayUtil.isNotEmpty(ids), AppContractEntity::getContractId, ids));
     }
+
+	/**
+	 * 分页查询合同信息
+	 * @param page 参数集
+	 * @param contractVO 查询参数列表
+	 * @return 建筑信息集合
+	 */
+	@Operation(summary = "分页查询合同信息" , description = "分页查询合同信息" )
+	@GetMapping("/vopage" )
+	@PreAuthorize("@pms.hasPermission('admin_appContract_view')" )
+	public R getEstateVoPage(@ParameterObject Page page, @ParameterObject ContractVO contractVO) {
+		return R.ok(appContractService.getContractAllPage(page, contractVO));
+	}
 }
