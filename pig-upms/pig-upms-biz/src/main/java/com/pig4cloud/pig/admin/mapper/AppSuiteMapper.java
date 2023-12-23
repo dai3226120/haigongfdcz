@@ -27,9 +27,12 @@ public interface AppSuiteMapper extends BaseMapper<AppSuiteEntity> {
 	/**
 	 * 通过建筑ID，查询房屋信息
 	 * @param estateId
+	 * @param suiteCode
+	 * @param suiteIsselfuse
+	 * @param suiteProperty
 	 * @return
 	 */
-	List<SuiteDTO> listSuitesByEstateId(Integer estateId);
+	List<SuiteDTO> listSuitesByEstateId(Integer estateId, String suiteCode, Integer suiteIsselfuse, String suiteProperty);
 
 
 	/**
@@ -45,7 +48,10 @@ public interface AppSuiteMapper extends BaseMapper<AppSuiteEntity> {
 	/**
 	 * 通过房屋ID，查询房屋-合同信息
 	 * @param estateId
+	 * @param suiteCode
+	 * @param suiteIsselfuse
+	 * @param suiteProperty
 	 * @return
 	 */
-	List<SuiteVO> listSuiteConstractsBySuiteId(Integer estateId);
+	List<SuiteVO> listSuiteConstractsBySuiteId(Integer estateId, String suiteCode, Integer suiteIsselfuse, String suiteProperty);
 }

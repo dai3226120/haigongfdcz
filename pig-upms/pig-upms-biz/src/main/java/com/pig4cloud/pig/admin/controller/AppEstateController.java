@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pig4cloud.pig.admin.api.dto.EstateDTO;
 import com.pig4cloud.pig.admin.api.dto.UserDTO;
+import com.pig4cloud.pig.admin.api.vo.EstateSuiteContractVO;
+import com.pig4cloud.pig.admin.api.vo.EstateSuiteVO;
 import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
@@ -136,26 +138,26 @@ public class AppEstateController {
 	/**
 	 * 分页查询建筑-房屋信息
 	 * @param page 参数集
-	 * @param estateDTO 查询参数列表
+	 * @param estateSuiteVO 查询参数列表
 	 * @return 用户集合
 	 */
 	@Operation(summary = "分页查询建筑-房屋信息" , description = "分页查询建筑-房屋信息" )
 	@GetMapping("/estatesuitevopage")
 	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
-	public R getEstateSuiteVosPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
-		return R.ok(appEstateService.getEstateSuiteAllPage(page, estateDTO));
+	public R getEstateSuiteVosPage(@ParameterObject Page page, @ParameterObject EstateSuiteVO estateSuiteVO) {
+		return R.ok(appEstateService.getEstateSuiteAllPage(page, estateSuiteVO));
 	}
 
 	/**
 	 * 分页查询建筑-房屋-合同信息
 	 * @param page 参数集
-	 * @param estateDTO 查询参数列表
+	 * @param estateSuiteContractVO 查询参数列表
 	 * @return 用户集合
 	 */
 	@Operation(summary = "分页查询建筑-房屋-合同信息" , description = "分页查询建筑-房屋-合同信息" )
 	@GetMapping("/estatesuitecontractvopage")
 	@PreAuthorize("@pms.hasPermission('pig_appEstate_view')" )
-	public R getEstateSuiteContractVosPage(@ParameterObject Page page, @ParameterObject EstateDTO estateDTO) {
-		return R.ok(appEstateService.getEstateSuiteContractAllPage(page, estateDTO));
+	public R getEstateSuiteContractVosPage(@ParameterObject Page page, @ParameterObject EstateSuiteContractVO estateSuiteContractVO) {
+		return R.ok(appEstateService.getEstateSuiteContractAllPage(page, estateSuiteContractVO));
 	}
 }

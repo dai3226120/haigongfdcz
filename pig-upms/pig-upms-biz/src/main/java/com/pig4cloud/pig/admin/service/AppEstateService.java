@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.pig4cloud.pig.admin.api.dto.EstateDTO;
 import com.pig4cloud.pig.admin.api.dto.UserDTO;
 import com.pig4cloud.pig.admin.api.entity.AppEstateEntity;
+import com.pig4cloud.pig.admin.api.vo.EstateSuiteContractVO;
+import com.pig4cloud.pig.admin.api.vo.EstateSuiteVO;
 
 public interface AppEstateService extends IService<AppEstateEntity> {
 
@@ -21,18 +23,18 @@ public interface AppEstateService extends IService<AppEstateEntity> {
 	/**
 	 * 分页查询建筑-房屋信息
 	 * @param page 分页对象
-	 * @param estateDTO 参数列表
+	 * @param estateSuiteVO 参数列表
 	 * @return
 	 */
-	IPage getEstateSuiteAllPage(Page page, EstateDTO estateDTO);
+	IPage getEstateSuiteAllPage(Page page, EstateSuiteVO estateSuiteVO);
 
 
 	/**
 	 * 分页查询建筑-房屋-合同信息
 	 * @param page 分页对象
-	 * @param estateDTO 参数列表
+	 * @param estateSuiteContractVO 参数列表
 	 * @return
 	 */
-	IPage getEstateSuiteContractAllPage(Page page, EstateDTO estateDTO);
+	IPage getEstateSuiteContractAllPage(Page page, EstateSuiteContractVO estateSuiteContractVO);
 
 }

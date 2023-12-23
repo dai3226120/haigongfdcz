@@ -85,6 +85,9 @@
 		<result property="selfuseArea" column="selfuse_area"/>
 		<result property="vacantArea" column="vacant_area"/>
 		<result property="suiteNum" column="suite_num"/>
+		<result property="suiteCode" column="suite_code"/>
+		<result property="suiteIsselfuse" column="suite_isselfuse"/>
+		<result property="suiteProperty" column="suite_suiteproperty"/>
 		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
@@ -92,7 +95,8 @@
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoByEstateId" column="estate_id">
 		</collection>
 		<collection property="suiteDTOList" ofType="com.pig4cloud.pig.admin.api.dto.SuiteDTO"
-					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuitesByEstateId" column="estate_id">
+					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuitesByEstateId"
+					column="{estateId=estate_id,suiteCode=suite_code,suiteIsselfuse=suite_isselfuse,suiteProperty=suite_suiteproperty}">
 		</collection>
 	</resultMap>
 
@@ -122,6 +126,9 @@
 		<result property="selfuseArea" column="selfuse_area"/>
 		<result property="vacantArea" column="vacant_area"/>
 		<result property="suiteNum" column="suite_num"/>
+		<result property="suiteCode" column="suite_code"/>
+		<result property="suiteIsselfuse" column="suite_isselfuse"/>
+		<result property="suiteProperty" column="suite_suiteproperty"/>
 		<collection property="estatefileImageList" ofType="com.pig4cloud.pig.admin.api.vo.EstatefileVO"
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listImageByEstateId" column="estate_id">
 		</collection>
@@ -129,7 +136,8 @@
 					select="com.pig4cloud.pig.admin.mapper.AppEstatefileMapper.listVideoByEstateId" column="estate_id">
 		</collection>
 		<collection property="suiteContractVoList" ofType="com.pig4cloud.pig.admin.api.vo.SuiteContractVo"
-					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuiteConstractsBySuiteId" column="estate_id">
+					select="com.pig4cloud.pig.admin.mapper.AppSuiteMapper.listSuiteConstractsBySuiteId"
+					column="{estateId=estate_id,suiteCode=suite_code,suiteIsselfuse=suite_isselfuse,suiteProperty=suite_suiteproperty}">
 		</collection>
 	</resultMap>
 
@@ -234,7 +242,10 @@
 		SUM(CASE WHEN app_suite.suite_isselfuse = 0 THEN app_suite.suite_area ELSE NULL END) AS rent_area,
 		SUM(CASE WHEN app_suite.suite_isselfuse = 1 THEN app_suite.suite_area ELSE NULL END) AS selfuse_area,
 		(app_estate.estate_area_estate - SUM(app_suite.suite_area)) AS vacant_area,
-		COUNT(app_suite.suite_id) AS suite_num
+		COUNT(app_suite.suite_id) AS suite_num,
+		app_suite.suite_code,
+		app_suite.suite_isselfuse,
+		app_suite.suite_suiteproperty
 		FROM app_estate
 		LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
 		LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
@@ -274,6 +285,17 @@
 			</if>
 			<if test="query.landstatusName != null and query.landstatusName != ''">
 				AND app_landstatus.landstatus_name = #{query.landstatusName}
+			</if>
+			<if test="query.suiteCode != null and query.suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
+			</if>
+			<if test="query.suiteIsselfuse != null and query.suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{query.suiteIsselfuse}
+			</if>
+			<if test="query.suiteProperty != null and query.suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+query.suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
 			</if>
 		</where>
 
@@ -309,7 +331,10 @@
 		SUM(CASE WHEN app_suite.suite_isselfuse = 0 THEN app_suite.suite_area ELSE NULL END) AS rent_area,
 		SUM(CASE WHEN app_suite.suite_isselfuse = 1 THEN app_suite.suite_area ELSE NULL END) AS selfuse_area,
 		(app_estate.estate_area_estate - SUM(app_suite.suite_area)) AS vacant_area,
-		COUNT(app_suite.suite_id) AS suite_num
+		COUNT(app_suite.suite_id) AS suite_num,
+		app_suite.suite_code,
+		app_suite.suite_isselfuse,
+		app_suite.suite_suiteproperty
 		FROM app_estate
 		LEFT JOIN app_district ON app_estate.estate_district_code = app_district.district_code
 		LEFT JOIN app_yjqy ON app_estate.yjqy_id = app_yjqy.yjqy_id
@@ -349,6 +374,17 @@
 			</if>
 			<if test="query.landstatusName != null and query.landstatusName != ''">
 				AND app_landstatus.landstatus_name = #{query.landstatusName}
+			</if>
+			<if test="query.suiteCode != null and query.suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
+			</if>
+			<if test="query.suiteIsselfuse != null and query.suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{query.suiteIsselfuse}
+			</if>
+			<if test="query.suiteProperty != null and query.suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+query.suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
 			</if>
 		</where>
 

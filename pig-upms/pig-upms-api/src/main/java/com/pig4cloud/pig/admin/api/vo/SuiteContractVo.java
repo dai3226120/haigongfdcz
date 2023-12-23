@@ -69,6 +69,12 @@ public class SuiteContractVo extends Model<SuiteContractVo> {
     private Double suiteSupportingarea;
 
 	/**
+	 * 房屋性质
+	 */
+	@Schema(description="房屋性质")
+	private String suiteProperty;
+
+	/**
 	* 参考日租金
 	*/
     @Schema(description="参考日租金")

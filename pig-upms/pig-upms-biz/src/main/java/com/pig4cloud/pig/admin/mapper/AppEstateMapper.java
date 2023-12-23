@@ -29,19 +29,19 @@ public interface AppEstateMapper extends BaseMapper<AppEstateEntity> {
 	/**
 	 * 分页查询建筑-房屋信息
 	 * @param page 分页
-	 * @param estateDTO 查询参数
+	 * @param estateSuiteVO 查询参数
 	 * @param dataScope
 	 * @return list
 	 */
-	IPage<EstateSuiteVO> getEstateSuiteVosPage(Page page, @Param("query")  EstateDTO estateDTO);
+	IPage<EstateSuiteVO> getEstateSuiteVosPage(Page page, @Param("query")  EstateSuiteVO estateSuiteVO);
 
 	/**
 	 * 分页查询建筑-房屋-合同信息
 	 * @param page 分页
-	 * @param estateDTO 查询参数
+	 * @param estateSuiteContractVO 查询参数
 	 * @param dataScope
 	 * @return list
 	 */
-	IPage<EstateSuiteContractVO> getEstateSuiteContractVosPage(Page page, @Param("query")  EstateDTO estateDTO);
+	IPage<EstateSuiteContractVO> getEstateSuiteContractVosPage(Page page, @Param("query")  EstateSuiteContractVO estateSuiteContractVO);
 
 }

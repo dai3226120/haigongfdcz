@@ -11,6 +11,7 @@
 		<id property="suiteIsselfuse" column="suite_isselfuse"/>
 		<id property="suiteArea" column="suite_area"/>
 		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteProperty" column="suite_suiteproperty"/>
 		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
 		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
 		<id property="suiteRemark" column="suite_remark"/>
@@ -29,6 +30,7 @@
 		<id property="suiteIsselfuse" column="suite_isselfuse"/>
 		<id property="suiteArea" column="suite_area"/>
 		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteProperty" column="suite_suiteproperty"/>
 		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
 		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
 		<id property="suiteRemark" column="suite_remark"/>
@@ -75,6 +77,7 @@
 		<id property="suiteIsselfuse" column="suite_isselfuse"/>
 		<id property="suiteArea" column="suite_area"/>
 		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteProperty" column="suite_suiteproperty"/>
 		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
 		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
 		<id property="suiteRemark" column="suite_remark"/>
@@ -89,6 +92,7 @@
 		<id property="suiteIsselfuse" column="suite_isselfuse"/>
 		<id property="suiteArea" column="suite_area"/>
 		<id property="suiteSupportingarea" column="suite_supportingarea"/>
+		<id property="suiteProperty" column="suite_suiteproperty"/>
 		<id property="suiteReferdailyrent" column="suite_referdailyrent"/>
 		<id property="suiteReferyearlyrent" column="suite_referyearlyrent"/>
 		<id property="suiteRemark" column="suite_remark"/>
@@ -179,6 +183,13 @@
 				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
 				AND app_suite.suite_code LIKE #{suiteCodeLike}
 			</if>
+			<if test="query.suiteIsselfuse != null and query.suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{query.suiteIsselfuse}
+			</if>
+			<if test="query.suiteProperty != null and query.suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+query.suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
 		</where>
 
 		<if test="_databaseId != 'mssql'">
@@ -191,7 +202,23 @@
 	<select id="listSuitesByEstateId" resultMap="suiteDTOMap">
 		SELECT *
 		FROM app_suite
-		WHERE app_suite.estate_id = #{estateId}
+		<where>
+			app_suite.suite_id != 0
+			<if test="estateId != null and estateId != ''">
+				AND app_suite.estate_id = #{estateId}
+			</if>
+			<if test="suiteCode != null and suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
+			</if>
+			<if test="suiteIsselfuse != null and suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{suiteIsselfuse}
+			</if>
+			<if test="suiteProperty != null and suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
+		</where>
 	</select>
 
 	<!-- 查询房屋-合同信息-->
@@ -207,6 +234,13 @@
 				<bind name="suiteCodeLike" value="'%'+query.suiteCode+'%'"/>
 				AND app_suite.suite_code LIKE #{suiteCodeLike}
 			</if>
+			<if test="query.suiteIsselfuse != null and query.suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{query.suiteIsselfuse}
+			</if>
+			<if test="query.suiteProperty != null and query.suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+query.suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
 		</where>
 
 		<if test="_databaseId != 'mssql'">
@@ -218,7 +252,23 @@
 	<select id="listSuiteConstractsBySuiteId" resultMap="appSuiteContractMap">
 		SELECT *
 		FROM app_suite
-		WHERE app_suite.estate_id = #{estateId}
+		<where>
+			app_suite.suite_id != 0
+			<if test="estateId != null and estateId != ''">
+				AND app_suite.estate_id = #{estateId}
+			</if>
+			<if test="suiteCode != null and suiteCode != ''">
+				<bind name="suiteCodeLike" value="'%'+suiteCode+'%'"/>
+				AND app_suite.suite_code LIKE #{suiteCodeLike}
+			</if>
+			<if test="suiteIsselfuse != null and suiteIsselfuse != ''">
+				AND app_suite.suite_isselfuse = #{suiteIsselfuse}
+			</if>
+			<if test="suiteProperty != null and suiteProperty != ''">
+				<bind name="suitePropertyLike" value="'%'+suiteProperty+'%'"/>
+				AND app_suite.suite_suiteproperty LIKE #{suitePropertyLike}
+			</if>
+		</where>
 	</select>
 
 </mapper>

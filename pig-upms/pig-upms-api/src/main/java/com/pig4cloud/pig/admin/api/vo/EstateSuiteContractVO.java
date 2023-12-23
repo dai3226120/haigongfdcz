@@ -209,4 +209,22 @@ public class EstateSuiteContractVO implements Serializable {
 	@Schema(description = "拥有的房屋-合同列表")
 	private List<SuiteContractVo> suiteContractVoList;
 
+	/**
+	 * 房间号
+	 */
+	@Schema(description="房间号")
+	private String suiteCode;
+
+	/**
+	 * 是否自用
+	 */
+	@Schema(description="是否自用")
+	private Integer suiteIsselfuse;
+
+	/**
+	 * 房屋性质
+	 */
+	@Schema(description="房屋性质")
+	private String suiteProperty;
+
 }
