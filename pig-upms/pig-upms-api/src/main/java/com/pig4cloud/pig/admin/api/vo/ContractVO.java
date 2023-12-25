@@ -21,6 +21,31 @@ import java.time.LocalDateTime;
 public class ContractVO extends Model<ContractVO> {
 
 
+
+	/**
+	 * 地区名称
+	 */
+	@Schema(description = "地区名称")
+	private String districtName;
+
+	/**
+	 * 建筑名称
+	 */
+	@Schema(description="建筑名称")
+	private String estateName;
+
+	/**
+	 * 建筑编码
+	 */
+	@Schema(description="建筑编码")
+	private String estateCode;
+
+	/**
+	 * 房间号
+	 */
+	@Schema(description="房间号")
+	private String suiteCode;
+
 	/**
 	* 合同ID
 	*/
