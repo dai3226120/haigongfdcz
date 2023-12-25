@@ -24,12 +24,22 @@ public interface AppContractMapper extends BaseMapper<AppContractEntity> {
 	List<AppSuiteMapper> listContractsBySuiteId(Long suiteId, String contractStatus);
 
 	/**
-	 * 分页查询合同信息（含所有）
+	 * 分页查询合同信息
 	 * @param page 分页
 	 * @param contractVO 查询参数
 	 * @param dataScope
 	 * @return list
 	 */
 	IPage<EstateVO> getContractVosPage(Page page, @Param("query") ContractVO contractVO);
+
+
+	/**
+	 * 分页查询合同历史信息
+	 * @param page 分页
+	 * @param contractVO 查询参数
+	 * @param dataScope
+	 * @return list
+	 */
+	IPage<EstateVO> getContractVosHistoryPage(Page page, @Param("query") ContractVO contractVO);
 
 }

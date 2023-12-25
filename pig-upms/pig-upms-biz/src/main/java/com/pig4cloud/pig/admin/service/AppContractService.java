@@ -10,11 +10,19 @@ import com.pig4cloud.pig.admin.api.vo.ContractVO;
 public interface AppContractService extends IService<AppContractEntity> {
 
 	/**
-	 * 分页查询合同信息（含有所有信息）
+	 * 分页查询合同信息
 	 * @param page 分页对象
 	 * @param contractVO 参数列表
 	 * @return
 	 */
 	IPage getContractAllPage(Page page, ContractVO contractVO);
+
+	/**
+	 * 分页查询合同历史信息
+	 * @param page 分页对象
+	 * @param contractVO 参数列表
+	 * @return
+	 */
+	IPage getContractAllHistoryPage(Page page, ContractVO contractVO);
 
 }

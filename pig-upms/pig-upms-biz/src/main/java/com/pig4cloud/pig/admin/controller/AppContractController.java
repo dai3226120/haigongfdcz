@@ -129,7 +129,20 @@ public class AppContractController {
 	@Operation(summary = "分页查询合同信息" , description = "分页查询合同信息" )
 	@GetMapping("/vopage" )
 	@PreAuthorize("@pms.hasPermission('admin_appContract_view')" )
-	public R getEstateVoPage(@ParameterObject Page page, @ParameterObject ContractVO contractVO) {
+	public R getContractVoPage(@ParameterObject Page page, @ParameterObject ContractVO contractVO) {
 		return R.ok(appContractService.getContractAllPage(page, contractVO));
+	}
+
+	/**
+	 * 分页查询合同历史信息
+	 * @param page 参数集
+	 * @param contractVO 查询参数列表
+	 * @return 建筑信息集合
+	 */
+	@Operation(summary = "分页查询合同历史信息" , description = "分页查询合同历史信息" )
+	@GetMapping("/historyvopage" )
+	@PreAuthorize("@pms.hasPermission('admin_appContract_view')" )
+	public R getContractVoHIstoryPage(@ParameterObject Page page, @ParameterObject ContractVO contractVO) {
+		return R.ok(appContractService.getContractAllHistoryPage(page, contractVO));
 	}
 }

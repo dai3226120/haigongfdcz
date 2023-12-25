@@ -19,7 +19,7 @@ public class AppContractServiceImpl extends ServiceImpl<AppContractMapper, AppCo
 
 
 	/**
-	 * 分页查询合同信息（含有所有信息）
+	 * 分页查询合同信息
 	 * @param page 分页对象
 	 * @param contractVO 参数列表
 	 * @return
@@ -27,5 +27,16 @@ public class AppContractServiceImpl extends ServiceImpl<AppContractMapper, AppCo
 	@Override
 	public IPage getContractAllPage(Page page, ContractVO contractVO) {
 		return baseMapper.getContractVosPage(page, contractVO);
+	}
+
+	/**
+	 * 分页查询合同历史信息
+	 * @param page 分页对象
+	 * @param contractVO 参数列表
+	 * @return
+	 */
+	@Override
+	public IPage getContractAllHistoryPage(Page page, ContractVO contractVO) {
+		return baseMapper.getContractVosHistoryPage(page, contractVO);
 	}
 }

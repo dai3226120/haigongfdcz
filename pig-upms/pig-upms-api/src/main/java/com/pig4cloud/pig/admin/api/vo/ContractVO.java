@@ -138,10 +138,16 @@ public class ContractVO extends Model<ContractVO> {
     private Double contractYearlyrent;
 
 	/**
-	* 合同状态
-	*/
-    @Schema(description="合同状态")
-    private String contractStatus;
+	 * 合同状态
+	 */
+	@Schema(description="合同状态")
+	private String contractStatus;
+
+	/**
+	 * 执行状态
+	 */
+	@Schema(description="执行状态")
+	private String executeStatus;
 
 	/**
 	* 创建人
